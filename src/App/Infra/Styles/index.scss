@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-[data-theme="dark"] {
+[style-theme="dark"] {
   --bg-color1: #121416;
   --font-color: #f4f4f4;
 }
-[data-theme="light"] {
+[style-theme="light"] {
   --bg-color1: #f4f4f4;
   --font-color: #121416;
 }
 
 body {
-  background-color: var(--bg-color1);
-  color: var(--font-color);
+  // @apply w-full;
+  background-color: lightblue;
+  // background-color: var(--bg-color1);
+  // color: var(--font-color);
+}
+
+#app {
+  // @apply w-full;
+  background-color: blue;
+  // background-color: var(--bg-color1);
+  // color: var(--font-color);
 }
