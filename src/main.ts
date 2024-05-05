@@ -6,9 +6,17 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./App/Infra/Router/router";
 
-const app = createApp(App);
+const _app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
+_app.use(createPinia());
+_app.use(router);
 
-app.mount("#app");
+// Custom Controls...
+import naiveuiComponents from "./App/Views/_Components/naiveui-components";
+naiveuiComponents.forEach((c) => {
+  _app.use(c.component);
+});
+
+
+
+_app.mount("#app");
