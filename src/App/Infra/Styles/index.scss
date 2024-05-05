@@ -8,29 +8,36 @@ $md: 	 768px;
 $lg:	1024px;
 $xl:	1280px;
 $xxl:	1536px;
+$fg-border: #2B2B2B; // How to export this?
 
 [style-theme="dark"] {
-  --bg-color1: #121416;
-  --font-color: #f4f4f4;
+  --bg-ancillary: #181818;
+  --bg-content: #1F1F1F;
+  --fg-font: #f4f4f4;
+  --fg-border: #2B2B2B;
 }
+
 [style-theme="light"] {
-  --bg-color1: #f4f4f4;
-  --font-color: #121416;
+  --bg-toolbox: #c0bca2;
+  --bg-content: #fdfedb;
+  --fg-font: #121416;
+  --fg-border: orange;//#2B2B2B;
+}
+.bordered{
+  border: 1px $fg-border solid;
+  outline: 1px $fg-border solid;
+}
+html {
+  @apply h-full;
+  background-color: var(--bg-ancillary);
+  color: var(--fg-font);
+
 }
 
-html, body {
+body {
   @apply h-full;
-  background-color: navajowhite;
-  // background-color: var(--bg-color1);
-  // color: var(--font-color);
 }
 
-#app {
-  // @apply h-full;
-  // background-color: grey;
-  // background-color: var(--bg-color1);
-  // color: var(--font-color);
-  
+#app {  
   @apply h-full;
-  background-color: pink;
 }
