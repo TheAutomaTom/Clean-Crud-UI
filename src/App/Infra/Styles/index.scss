@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+// Tailwind breakpoints
+$sm:	 640px;	
+$md: 	 768px;	
+$lg:	1024px;
+$xl:	1280px;
+$xxl:	1536px;
+
 [style-theme="dark"] {
   --bg-color1: #121416;
   --font-color: #f4f4f4;

@@ -1,5 +1,14 @@
+<template>
+  <div id="app-wrapper" style="grid-template-rows: 3em 1fr">
+    <div >
+      <span class="bg-orange-400">Header!</span>
+    </div>
+    <content-view id="content-view" ></content-view>
+  </div>
+</template>
+
 <script setup lang="ts">
-import ContentView from "./App/Views/ContentView.vue";
+import ContentView from "./App/Views/AppView/ContentView.vue";
 import { onMounted, onUnmounted } from "vue";
 import { useAppState } from "./App/State/AppState";
 const app = useAppState();
@@ -16,16 +25,28 @@ function handleScroll() {
 }
 
 </script>
-
-<template>
-  <content-view id="content-view" ></content-view>
-</template>
-
 <style lang="scss">
 
+#app-wrapper{
+  @apply grid-cols-3
+    grid-rows-3 ;
+
+}
+
 #content-view {
+
   @apply w-full;
-  @apply bg-slate-300;
+  @apply bg-green-300;
+  
+  @media screen and (max-width: $small) {
+    @apply bg-green-500;
+  }
+  @media screen and (min-width: $medium) {
+    @apply bg-green-800;
+  
+  }
+
+
 }
 
 // .app-wrapper {

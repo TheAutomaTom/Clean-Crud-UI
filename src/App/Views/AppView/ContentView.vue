@@ -6,11 +6,11 @@
 
 </script>
 <template>  <!---- Template ------------------------------------------------>
-  <!-- <div > -->
-    <span>Howdy y'all</span>
-    
-  <!-- </div> -->
+  <div >
+    <span>Howdy y'all</span>    
+  </div>
 </template>
+
 <!--<style scoped lang="scss">  //---- Style ---------------------------------~~>
 .app-wrapper {
   @apply w-full;
