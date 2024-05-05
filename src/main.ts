@@ -11,10 +11,16 @@ const _app = createApp(App);
 _app.use(createPinia());
 _app.use(router);
 
-// Custom Controls...
+// Controls...
 import naiveuiComponents from "./App/Views/_Components/naiveui-components";
 naiveuiComponents.forEach((c) => {
   _app.use(c.component);
+});
+
+// Icons...
+import xiconComponents from "./App/Views/_Components/xicon-components";
+xiconComponents.forEach((c) => {
+  return _app.component(c.name, c.component);
 });
 
 
