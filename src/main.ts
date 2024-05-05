@@ -6,9 +6,23 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./App/Infra/Router/router";
 
-const app = createApp(App);
+const _app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
+_app.use(createPinia());
+_app.use(router);
 
-app.mount("#app");
+// Controls...
+import naiveuiComponents from "./App/Views/_Components/naiveui-components";
+naiveuiComponents.forEach((c) => {
+  _app.use(c.component);
+});
+
+// Icons...
+import xiconComponents from "./App/Views/_Components/xicon-components";
+xiconComponents.forEach((c) => {
+  return _app.component(c.name, c.component);
+});
+
+
+
+_app.mount("#app");

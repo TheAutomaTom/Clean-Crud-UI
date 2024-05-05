@@ -38,13 +38,13 @@ function handleScroll() {
   @apply w-full;
   @apply bg-green-300;
   
-  @media screen and (max-width: $small) {
-    @apply bg-green-500;
-  }
-  @media screen and (min-width: $medium) {
-    @apply bg-green-800;
+  // @media screen and (max-width: $small) {
+  //   @apply bg-green-500;
+  // }
+  // @media screen and (min-width: $medium) {
+  //   @apply bg-green-800;
   
-  }
+  // }
 
 
 }
