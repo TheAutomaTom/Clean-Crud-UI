@@ -1,52 +1,105 @@
+<script setup lang="ts">
+  import HeaderComp from "./App/Views/AppView/HeaderComp.vue";
+  import ContentView from "./App/Views/AppView/ContentView.vue";
+  import FooterComp from "./App/Views/AppView/FooterComp.vue";
+  import { onMounted, onUnmounted } from "vue";
+  import { useAppState } from "./App/State/AppState";
+  const app = useAppState();
+
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+
+  function handleScroll() {
+    app.IsScrolled = window.scrollY > 0;
+  }
+
+</script>
 <template>
-  <div id="app-wrapper" style="grid-template-rows: 3em 1fr">
-    <div >
-      <span class="bg-orange-400">Header!</span>
-    </div>
+  <div id="app-container">
+    <header-comp id="header-comp" ></header-comp>
     <content-view id="content-view" ></content-view>
+    <footer-comp id="footer-comp" ></footer-comp>
   </div>
 </template>
 
-<script setup lang="ts">
-import ContentView from "./App/Views/AppView/ContentView.vue";
-import { onMounted, onUnmounted } from "vue";
-import { useAppState } from "./App/State/AppState";
-const app = useAppState();
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
-function handleScroll() {
-  app.IsScrolled = window.scrollY > 0;
-}
-
-</script>
 <style lang="scss">
+/*
+NOTES
 
-#app-wrapper{
-  @apply grid-cols-3
-    grid-rows-3 ;
+- clamp(20px, 40%, 500px) 
+"Clamp take three parameters (min, preferred, max)"
 
+- grid-template-columns: 1fr fit-content(20%);
+"The fit-content function accepts one param, the maximum value. 
+A grid column/row with this property set will still take up as little space as necessary, 
+according to its content, but no more than the maximum value." 
+
+Justify-items: Aligns grid items along the inline (row) axis (left and right).
+Justify-items: start | end | center | stretch;
+
+Align-items: Aligns along the block (column) axis (up and down).
+Align-items: start | end | center | stretch;
+
+*/
+#app-container{
+  
+  display: grid;
+  grid-template-columns: 4em 0em 1fr 1em;
+  grid-template-rows: 50px auto 50px;
+  
+  @screen lg {
+    grid-template-columns: 4em 18em 1fr 1m;    
+  }
+  
+  @screen 2xl {
+    grid-template-columns: 4em 18em 1fr 22em;
+    
+  }
+
+  
 }
 
+#header-comp {
+  @apply bg-cyan-500 w-full;
+  grid-column-start:1;
+  grid-column-end:-1;
+  grid-row-start:1;
+  grid-row-end:1;
+  
+
+}
 #content-view {
+  @apply bg-green-200 w-full;
+  display: inline-block;
 
-  @apply w-full;
-  @apply bg-green-300;
-  
-  // @media screen and (max-width: $small) {
-  //   @apply bg-green-500;
-  // }
-  // @media screen and (min-width: $medium) {
-  //   @apply bg-green-800;
-  
-  // }
+  grid-column-start:3;
+  grid-column-end:5;
+  grid-row-start:2;
+  grid-row-end:2;
 
+  @screen md {
+    @apply w-full;
+    grid-column-start:3;
+    grid-column-end:4;
+  }  
+  @screen lg {
+    grid-column-end:4;    
+  }
+  @screen xl {    
+    grid-column-end:4;
+  }
 
+}
+#footer-comp {
+  @apply bg-teal-500 w-full;
+  grid-column-start:1;
+  grid-column-end:-1;
+  grid-row-start:3;
+  grid-row-end:-1;
 }
 
 // .app-wrapper {

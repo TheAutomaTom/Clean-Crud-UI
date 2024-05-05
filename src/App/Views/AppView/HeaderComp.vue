@@ -7,11 +7,10 @@
 
 <template>  <!---- Template ------------------------------------------------>
   <div>
-    
-    <span>"Howdy y'all"</span>
-
+    <span>Header</span>
   </div>
 </template>
 
 <style scoped lang="scss">  //---- Style ----------------------------------->
+
 </style>
