@@ -18,16 +18,19 @@ $xxl:	1536px;
   --font-color: #121416;
 }
 
-body {
-  // @apply w-full;
-  background-color: lightblue;
+html, body {
+  @apply h-full;
+  background-color: navajowhite;
   // background-color: var(--bg-color1);
   // color: var(--font-color);
 }
 
 #app {
-  // @apply w-full;
-  background-color: blue;
+  // @apply h-full;
+  // background-color: grey;
   // background-color: var(--bg-color1);
   // color: var(--font-color);
+  
+  @apply h-full;
+  background-color: pink;
 }

@@ -7,7 +7,7 @@
 
 <template>  <!---- Template ------------------------------------------------>
   <div>
-    <span>Header</span>
+    
   </div>
 </template>
 

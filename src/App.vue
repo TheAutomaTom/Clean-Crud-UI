@@ -45,22 +45,20 @@ Align-items: Aligns along the block (column) axis (up and down).
 Align-items: start | end | center | stretch;
 
 */
-#app-container{
-  
-  display: grid;
+#app-container{  
+  display: grid;  
   grid-template-columns: 4em 0em 1fr 1em;
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 3em 1fr 2em;
   
   @screen lg {
-    grid-template-columns: 4em 18em 1fr 1m;    
-  }
-  
+    grid-template-columns: 4em 18em 1fr 1m;
+  } 
   @screen 2xl {
-    grid-template-columns: 4em 18em 1fr 22em;
-    
+    grid-template-columns: 4em 18em 1fr 1em;
   }
 
-  
+  @apply h-full;
+  background-color: grey;
 }
 
 #header-comp {
@@ -69,37 +67,31 @@ Align-items: start | end | center | stretch;
   grid-column-end:-1;
   grid-row-start:1;
   grid-row-end:1;
-  
-
 }
+
 #content-view {
-  @apply bg-green-200 w-full;
-  display: inline-block;
+  @apply bg-green-200 w-full h-full;
 
   grid-column-start:3;
-  grid-column-end:5;
+  grid-column-end:4;
   grid-row-start:2;
   grid-row-end:2;
 
-  @screen md {
-    @apply w-full;
-    grid-column-start:3;
-    grid-column-end:4;
-  }  
-  @screen lg {
-    grid-column-end:4;    
-  }
-  @screen xl {    
-    grid-column-end:4;
-  }
+  // @screen md {
+  // }  
+  // @screen lg {
+  // }
+  // @screen xl {
+  // }
 
 }
 #footer-comp {
-  @apply bg-teal-500 w-full;
+  @apply bg-teal-500 w-full;  
   grid-column-start:1;
   grid-column-end:-1;
   grid-row-start:3;
   grid-row-end:-1;
+  bottom:0;
 }
 
 // .app-wrapper {
