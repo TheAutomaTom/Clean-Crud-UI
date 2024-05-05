@@ -17,12 +17,4 @@ naiveuiComponents.forEach((c) => {
   _app.use(c.component);
 });
 
-// Icons...
-import xiconComponents from "./App/Views/_Components/xicon-components";
-xiconComponents.forEach((c) => {
-  return _app.component(c.name, c.component);
-});
-
-
-
 _app.mount("#app");

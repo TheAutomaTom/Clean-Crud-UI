@@ -1,3 +1,5 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,6 +25,37 @@ $fg-border: #2B2B2B; // How to export this?
   --fg-font: #121416;
   --fg-border: orange;//#2B2B2B;
 }
+
+.toolbox-menu-icon{
+  
+  border: 1px $fg-border solid;
+  width: 30px !important;
+  height: 30px !important;
+  
+  color: hotpink;
+
+}
+
+.toolbox-menu-icon icon{
+  
+  border: 1px $fg-border solid;
+  width: 30px !important;
+  height: 30px !important;
+  
+  color: hotpink;
+
+}
+
+// [toolbox-menu-icon]{
+  
+//   border: 1px $fg-border solid;
+//   width: 30px !important;
+//   height: 30px !important;
+  
+//   color: hotpink;
+
+// }
+
 .bordered{
   border: 1px $fg-border solid;
   outline: 1px $fg-border solid;

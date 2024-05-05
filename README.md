@@ -1,5 +1,6 @@
 # cca-ui
 
-https://www.xicons.org/#/
+- [Naive Ui Components](https://www.naiveui.com/en-US/os-theme/docs/installation)
 
-https://www.naiveui.com/en-US/os-theme/docs/installation
+
+- [Google's Material Design Icons](https://materialdesignicons.com/)

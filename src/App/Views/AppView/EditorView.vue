@@ -11,6 +11,6 @@
   </div>
 </template>
 
-<style scoped lang="scss">  //---- Style ----------------------------------->
+<!--<style scoped lang="scss">  //---- Style ---------------------------------~~>
 
-</style>
+</style>-->
