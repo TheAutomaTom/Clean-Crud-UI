@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import ToolboxComp from "./App/Views/AppView/ToolboxComp.vue";
-  import WorkbenchComp from "./App/Views/AppView/WorkbenchComp.vue";
-  import ContentView from "./App/Views/AppView/EditorView.vue";
+  import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
+  import EditorView from "./App/Views/AppView/EditorView.vue";
   import FooterComp from "./App/Views/AppView/FooterComp.vue";
   import { onMounted, onUnmounted } from "vue";
   import { useAppState } from "./App/State/AppState";
@@ -22,8 +22,8 @@
 <template>
   <div id="app-container">
     <toolbox-comp id="toolbox-comp" class="bordered"></toolbox-comp>
-    <workbench-comp id="workbench-comp" class="bordered" ></workbench-comp>
-    <content-view id="content-view" class="bordered" ></content-view>
+    <workbench-selector id="workbench-selector" class="bordered" ></workbench-selector>
+    <editor-view id="editor-view" class="bordered" ></editor-view>
     <footer-comp id="footer-comp" class="bordered" ></footer-comp>
   </div>
 </template>
@@ -72,7 +72,7 @@ $fg-border: #2B2B2B;
   grid-row-end:3;
 }
 
-#workbench-comp {
+#workbench-selector {
   @apply w-full;
   grid-column-start:3;
   grid-column-end:-1;
@@ -80,7 +80,7 @@ $fg-border: #2B2B2B;
   grid-row-end:1;
 }
 
-#content-view {
+#editor-view {
   @apply w-full h-full;
   background-color: var(--bg-content);
   grid-column-start:3;

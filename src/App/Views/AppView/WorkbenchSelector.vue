@@ -7,7 +7,7 @@
 
 <template>  <!---- Template ------------------------------------------------>
   <div>
-    Workbench  </div>
+    WorkbenchSelector  </div>
 </template>
 
 <style scoped lang="scss">  //---- Style ----------------------------------->
