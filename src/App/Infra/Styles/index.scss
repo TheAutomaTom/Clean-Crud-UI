@@ -10,67 +10,54 @@ $md: 	 768px;
 $lg:	1024px;
 $xl:	1280px;
 $xxl:	1536px;
-$fg-border: #2B2B2B; // How to export this?
+
+// Theme colors
+$bg-ancillary: #181818;
+$bg-content: #1F1F1F;
+$fg-font-5: #3a3a3a;
+$fg-font-4: #4b4b4b;
+$fg-font-3: #7e7e7e;
+$fg-border: #2B2B2B;
+
+
 
 [style-theme="dark"] {
   --bg-ancillary: #181818;
   --bg-content: #1F1F1F;
-  --fg-font: #f4f4f4;
+  --fg-font-5: #f4f4f4;
   --fg-border: #2B2B2B;
 }
 
-[style-theme="light"] {
-  --bg-ancillary: #c0bca2;
-  --bg-content: #fdfedb;
-  --fg-font: #121416;
-  --fg-border: orange;//#2B2B2B;
-}
-
-.toolbox-menu-icon{
-  
-  border: 1px $fg-border solid;
-  width: 30px !important;
-  height: 30px !important;
-  
-  color: hotpink;
-
-}
-
-.toolbox-menu-icon icon{
-  
-  border: 1px $fg-border solid;
-  width: 30px !important;
-  height: 30px !important;
-  
-  color: hotpink;
-
-}
-
-// [toolbox-menu-icon]{
-  
-//   border: 1px $fg-border solid;
-//   width: 30px !important;
-//   height: 30px !important;
-  
-//   color: hotpink;
-
+// [style-theme="light"] {
+//   --bg-ancillary: #c0bca2;
+//   --bg-content: #fdfedb;
+//   --fg-font: #121416;
+//   --fg-border: orange;//#2B2B2B;
 // }
+
+html {
+  @apply h-full;
+  background-color: var(--bg-ancillary);
+  color: var(--fg-font-5);
+}
+body {
+  @apply h-full;
+}
+#app {  
+  @apply h-full;
+}
+
+.toolbox-menu-icon{  
+  width: 2.5rem;
+  margin: 0.4rem;  
+  fill: $fg-font-4;
+  :hover{
+    fill: $fg-font-3;
+  }
+
+}
 
 .bordered{
   border: 1px $fg-border solid;
   outline: 1px $fg-border solid;
-}
-html {
-  @apply h-full;
-  background-color: var(--bg-ancillary);
-  color: var(--fg-font);
-
-}
-
-body {
-  @apply h-full;
-}
-
-#app {  
-  @apply h-full;
 }

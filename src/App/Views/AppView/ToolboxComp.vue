@@ -7,7 +7,13 @@
 </script>
 <template>  <!---- Template ------------------------------------------------>
   <div class="border-b-red-400">
-    <span>Toolbox</span> 
+    <g-icon class="toolbox-menu-icon" :name="'account-circle'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'account-circle-off'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'id-badge'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'help'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'manage-account'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'person-edit'"></g-icon> 
+    <g-icon class="toolbox-menu-icon" :name="'person-off'"></g-icon> 
   </div>
 </template>
 
