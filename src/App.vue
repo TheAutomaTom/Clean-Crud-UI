@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import HeaderComp from "./App/Views/AppView/WorkbenchComp.vue";
+  import ToolboxComp from "./App/Views/AppView/ToolboxComp.vue";
+  import WorkbenchComp from "./App/Views/AppView/WorkbenchComp.vue";
   import ContentView from "./App/Views/AppView/EditorView.vue";
   import FooterComp from "./App/Views/AppView/FooterComp.vue";
   import { onMounted, onUnmounted } from "vue";
@@ -20,8 +21,8 @@
 </script>
 <template>
   <div id="app-container">
-    <toolbox-menu id="header-comp" class="bordered"></toolbox-menu>
-    <header-comp id="header-comp" class="bordered" ></header-comp>
+    <toolbox-comp id="toolbox-comp" class="bordered"></toolbox-comp>
+    <workbench-comp id="workbench-comp" class="bordered" ></workbench-comp>
     <content-view id="content-view" class="bordered" ></content-view>
     <footer-comp id="footer-comp" class="bordered" ></footer-comp>
   </div>
@@ -63,9 +64,17 @@ $fg-border: #2B2B2B;
   @apply h-full;
 }
 
-#header-comp {
+#toolbox-comp {
   @apply w-full;
   grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:1;
+  grid-row-end:3;
+}
+
+#workbench-comp {
+  @apply w-full;
+  grid-column-start:3;
   grid-column-end:-1;
   grid-row-start:1;
   grid-row-end:1;

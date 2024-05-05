@@ -7,7 +7,7 @@
 </script>
 <template>  <!---- Template ------------------------------------------------>
   <div>
-    <span>Template</span> 
+    <span>Footer</span> 
   </div>
 </template>
 

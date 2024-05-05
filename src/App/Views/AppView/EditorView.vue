@@ -7,7 +7,7 @@
 
 <template>  <!---- Template ------------------------------------------------>
   <div>
-    <p>Content</p>
+    <p>Editor</p>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
 </script>
 <template>  <!---- Template ------------------------------------------------>
   <div class="border-b-red-400">
-    <span>Template</span> 
+    <span>Toolbox</span> 
   </div>
 </template>
 
