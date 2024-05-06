@@ -1,15 +1,54 @@
+
+<script setup lang="ts">
+  import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
+  import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
+  import EditorView from "./App/Views/AppView/EditorView.vue";
+  import FooterComp from "./App/Views/AppView/FooterInfo.vue";
+  import { onMounted, onUnmounted, ref } from "vue";
+  import { useAppState } from "./App/State/AppState";
+  import { useToolboxState } from "./App/State/ToolboxState";
+  const app$ = useAppState();
+  const toolbox$ = useToolboxState();
+
+  onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
+  onUnmounted(() => { window.removeEventListener("scroll", handleScroll); });
+
+  function handleScroll() {
+    app$.IsScrolled = window.scrollY > 0;
+  }
+
+  // const toolboxGridColumns = ref("toolbox-grid-columns-per-toolbox-close");
+  const editorGridColumns = ref("editor-grid-columns-per-toolbox-close");
+
+  function handleToolboxToggle(name: string) {
+    console.log(`Receiving: ${name}`);
+    // app$.UpdateToolbox(name);
+    // if(toolbox$.IsOpen == true ){
+    //   console.log("Open Toolbox");
+    //   // toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-open";
+    //   editorGridColumns.value   = "editor-grid-columns-per-toolbox-open";
+    // } else {
+    //   console.log("Close Toolbox");
+    //   // toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-close";
+    //   editorGridColumns.value   = "editor-grid-columns-per-toolbox-close";
+    // }
+  }
+
+</script>
+
 <template>
   <div 
     id="app-container" 
-    class="toolbox-parent"
-  >
-    <toolbox-comp 
-      id="toolbox-comp" 
-      class="bordered" 
-      :class="toolboxGridColumns"
-      @toolbox-toggled="handleToolboxUpdate"
-    ></toolbox-comp>
+  > 
+    <toolbox-menu 
+      id="toolbox-menu"      
+      @toolbox-toggled="handleToolboxToggle"
+    ></toolbox-menu>
 
+    <toolbox-drawer 
+      id="toolbox-drawer"
+    ></toolbox-drawer>
+    
     <workbench-selector 
       id="workbench-selector" 
       class="bordered" 
@@ -22,53 +61,13 @@
       :class="editorGridColumns"
     ></editor-view>
 
-    <footer-comp 
+    <footer-info 
       id="footer-comp" 
       class="bordered"
-    ></footer-comp>
+    ></footer-info> 
 
   </div>
 </template>
-<script setup lang="ts">
-  import ToolboxComp from "./App/Views/AppView/ToolboxComp.vue";
-  import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
-  import EditorView from "./App/Views/AppView/EditorView.vue";
-  import FooterComp from "./App/Views/AppView/FooterComp.vue";
-  import { onMounted, onUnmounted, ref } from "vue";
-  import { useAppState } from "./App/State/AppState";
-import { useToolboxState } from "./App/State/ToolboxState";
-  const app$ = useAppState();
-  const toolbox$ = useToolboxState();
-
-  onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
-  });
-  onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
-  });
-
-  function handleScroll() {
-    app$.IsScrolled = window.scrollY > 0;
-  }
-
-  const toolboxGridColumns = ref("toolbox-grid-columns-per-toolbox-close");
-  const editorGridColumns = ref("editor-grid-columns-per-toolbox-close");
-
-  function handleToolboxUpdate(name: string) {
-    console.log(`Receiving: ${name}`);
-    app$.UpdateToolbox(name);
-    if(toolbox$.IsOpen == true ){
-      console.log("Open Toolbox");
-      toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-open";
-      editorGridColumns.value   = "editor-grid-columns-per-toolbox-open";
-    } else {
-      console.log("Close Toolbox");
-      toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-close";
-      editorGridColumns.value   = "editor-grid-columns-per-toolbox-close";
-    }
-  }
-
-</script>
 
 <style lang="scss">
 /*
@@ -89,81 +88,71 @@ Align-items: Aligns along the block (column) axis (up and down).
 Align-items: start | end | center | stretch;
 
 */
-// $fg-border: #2B2B2B;
 
-#app-container{  
-  display: grid;  
-  grid-template-columns: 4em 0.25em 1fr 1em;
-  grid-template-rows: 3em 1fr 2em;
-  
-  @screen lg {
-    grid-template-columns: 4em 18em 1fr 1m;
-  } 
-  @screen 2xl {
-    grid-template-columns: 4em 18em 1fr 1em;
-  }
-
-  @apply h-full;
+//=== App ==================================//
+#app-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2.5em 18em 1fr 1em;
+  grid-template-rows: 2.5em 1fr 2em;
 }
+
 //=== Toolbox ==============================//
-#toolbox-comp {
-  @apply w-full;
-  grid-column-start:1;
-  grid-row-start:1;
-  grid-row-end:3;
+#toolbox-menu{
+  background-color:lightgreen;
+  grid-row:1/3;
+  grid-column:1/2;
+  display: grid;
+  grid-template-rows: 1fr 5em;
+  align-content:start;  
 }
+
+#toolbox-drawer{
+  background-color:limegreen;
+  grid-row:1/3;
+  grid-column:2/3;
+  
+}
+
 .toolbox-grid-columns-per-toolbox-open {
-// See also: editor-grid-columns-per-toolbox-close
-  grid-column-end:2;
-}
-.toolbox-grid-columns-per-toolbox-close {
 // See also: editor-grid-columns-per-toolbox-close
   grid-column-end:3;
 }
+.toolbox-grid-columns-per-toolbox-close {
+  // See also: editor-grid-columns-per-toolbox-close
+  // grid-column-end:3;
+  grid-column-end:2;
+}
 
 //=== Workbench ============================//
-#workbench-selector {
-  @apply w-full;
-  // grid-column-start:3;
-  grid-column-end:-1;
-  grid-row-start:1;
-  grid-row-end:1;
+#workbench-selector{
+  background-color:green;
+  grid-row:1/2;
+  grid-column:3/5;
+
 }
 
 //=== Editor ===============================//
-#editor-view {
-  @apply w-full h-full;
-  background-color: var(--bg-content);
-  // grid-column-start:3;
-  grid-column-end:4;
-  grid-row-start:2;
-  grid-row-end:2;
-
-  // @screen md {
-  // }  
-  // @screen lg {
-  // }
-  // @screen xl {
-  // }
-
+#editor-view{
+  background-color:lightseagreen;
+  grid-row:2/3;
+  grid-column:3/5;
+  
 }
 .editor-grid-columns-per-toolbox-open {
 // See also: toolbox-grid-columns-per-toolbox-open
+  grid-column-start:3;
+}
+.editor-grid-columns-per-toolbox-close {
+  // See also: toolbox-grid-columns-per-toolbox-close
   grid-column-start:2;
 }
 
-.editor-grid-columns-per-toolbox-close {
-// See also: toolbox-grid-columns-per-toolbox-close
-  grid-column-start:3;
-}
-
 //=== Footer ===============================//
-#footer-comp {
-  @apply w-full;
-  grid-column-start:1;
-  grid-column-end:-1;
-  grid-row-start:3;
-  grid-row-end:-1;
-  bottom:0;
+#footer-comp{
+  background-color:gold;
+  grid-row:3/4;
+  grid-column:1/5;
+
 }
 </style>

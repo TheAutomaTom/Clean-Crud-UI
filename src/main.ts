@@ -17,7 +17,7 @@ naiveuiComponents.forEach((c) => {
   _app.use(c.component);
 });
 
-import GIcon from "./App/Views/_Components/Icons/GIcon.vue";
+import GIcon from "./App/Views/_Components/GIcon.vue";
 _app.component("g-icon", GIcon);
 
 _app.mount("#app");

@@ -14,6 +14,4 @@
 defineProps({
   name: { type: String, default: "psychology-question-mark" }
 });
-
-
 </script>

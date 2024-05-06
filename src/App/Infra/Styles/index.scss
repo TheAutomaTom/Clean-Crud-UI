@@ -47,16 +47,6 @@ body {
   @apply h-full;
 }
 
-.toolbox-menu-icon{  
-  width: 2.5rem;
-  margin: 0.4rem;  
-  fill: $fg-font-4;
-  :hover{
-    fill: $fg-font-3;
-  }
-
-}
-
 .bordered{
   border: 1px $fg-border solid;
   outline: 1px $fg-border solid;
