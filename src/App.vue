@@ -46,27 +46,6 @@
       @toolbox-toggled="handleToolboxToggle"
     ></toolbox-menu> 
 
-<!-- 
-<div id="toolbox-menu">
-  
-<div id="toolbox-menu-start" 
-  class="bordered">
-  <div class="bordered toolbox-menu-item-start">A1</div>
-  <div class="bordered toolbox-menu-item-start">A2</div>
-  <div class="bordered toolbox-menu-item-start">A3</div>
-  <div class="bordered toolbox-menu-item-start">A4</div>
-  <div class="bordered toolbox-menu-item-start">A5</div>
-  <div class="bordered toolbox-menu-item-start">A6</div>
-  <div class="bordered toolbox-menu-item-start">A7</div>
-</div>
-
-<div id="toolbox-menu-end" 
-  class="bordered">
-  <div class="bordered toolbox-menu-item-end">A8</div>
-  <div class="bordered toolbox-menu-item-end">A9</div>
-</div>
-</div> -->
-
     <toolbox-drawer 
       id="toolbox-drawer"
     ></toolbox-drawer>
@@ -92,24 +71,6 @@
 </template>
 
 <style lang="scss">
-/*
-NOTES
-
-- clamp(20px, 40%, 500px) 
-"Clamp take three parameters (min, preferred, max)"
-
-- grid-template-columns: 1fr fit-content(20%);
-"The fit-content function accepts one param, the maximum value. 
-A grid column/row with this property set will still take up as little space as necessary, 
-according to its content, but no more than the maximum value." 
-
-Justify-items: Aligns grid items along the inline (row) axis (left and right).
-Justify-items: start | end | center | stretch;
-
-Align-items: Aligns along the block (column) axis (up and down).
-Align-items: start | end | center | stretch;
-
-*/
 
 //=== App ==================================//
 #app-container {
