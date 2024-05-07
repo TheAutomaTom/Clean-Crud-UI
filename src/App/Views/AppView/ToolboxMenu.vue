@@ -12,17 +12,17 @@
 <!---- Top-Aligned --------------------------------------------------------->
   <div id="toolbox-menu-container">
     <div id="toolbox-menu-start">
-      <div class="icon-wrapper">
-        <g-icon name="account-circle" class="toolbox-menu-item-start" @click="handleToolboxToggle" />
+      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
+        <g-icon name="account-circle" class="toolbox-menu-item-start"  />
       </div>
     </div>
 
 <!---- Bottom-Aligned ------------------------------------------------------>
     <div id="toolbox-menu-end">
-      <div class="icon-wrapper">
+      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
         <g-icon name="account-circle" class="toolbox-menu-item-start" @click="handleToolboxToggle" />
       </div>
-      <div class="icon-wrapper">
+      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
         <g-icon name="account-circle" class="toolbox-menu-item-start" @click="handleToolboxToggle" />
       </div>
     </div>
