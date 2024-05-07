@@ -5,7 +5,7 @@
 	import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
 	import EditorView from "./App/Views/AppView/EditorView.vue";
 	import FooterComp from "./App/Views/AppView/FooterInfo.vue";
-	import { onMounted, onUnmounted, ref } from "vue";
+	import { computed, onMounted, onUnmounted, ref } from "vue";
 	import { useAppState } from "./App/State/AppState";
 	import { useToolboxState } from "./App/State/ToolboxState";
 	const app$ = useAppState();
@@ -20,6 +20,8 @@
 
 	const mainGridClass = ref("app-container-toolbox-show");
 
+
+
 	function handleToolboxToggle(icon: string) {
 		console.log(`Receiving: ${icon}`);
 		app$.UpdateToolbox(icon);
@@ -31,7 +33,10 @@
 			mainGridClass.value   = "app-container-toolbox-hide";
 		}
 	}
-  
+
+	const toolboxDrawerIsVisible = computed(() => {
+		return mainGridClass.value ==  "app-container-toolbox-show" ? true : false;
+	});
 
 </script>
 
@@ -47,7 +52,8 @@
     ></toolbox-menu> 
 
     <toolbox-drawer 
-      id="toolbox-drawer"
+      v-show="toolboxDrawerIsVisible"
+      id="toolbox-drawer"      
     ></toolbox-drawer>
     
     <workbench-selector 
@@ -75,18 +81,15 @@
   height: 100%;
   display: grid;
   grid-template-rows: 2.5em 1fr 2em;
-  
-  transition: 300ms;
+  transition: 150ms;
+  transition-timing-function: ease-out;
+  overflow: hidden;
 }
-
 .app-container-toolbox-show{
-  grid-template-columns: 2.5em 18em 1fr 1em;
-  
+  grid-template-columns: 2.5em 18em 1fr 1em;  
 }
-
 .app-container-toolbox-hide{
   grid-template-columns: 2.5em 0em 1fr 1em;
-
 }
 
 //=== Toolbox ==============================//
@@ -95,7 +98,6 @@
 #toolbox-drawer{
   grid-row:1/3;
   grid-column:2/3;
-  
 }
 
 .toolbox-grid-columns-per-toolbox-open {
