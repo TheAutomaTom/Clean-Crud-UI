@@ -73,7 +73,6 @@ $fg-font-4: #4b4b4b;
 }
 
 #toolbox-menu-container{
-  background-color:lightgreen;
   grid-row:1/3;
   grid-column:1/2;
 

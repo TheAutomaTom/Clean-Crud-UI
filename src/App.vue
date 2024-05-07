@@ -123,7 +123,6 @@ Align-items: start | end | center | stretch;
 
 
 #toolbox-drawer{
-  background-color:limegreen;
   grid-row:1/3;
   grid-column:2/3;
   
@@ -141,7 +140,6 @@ Align-items: start | end | center | stretch;
 
 //=== Workbench ============================//
 #workbench-selector{
-  background-color:green;
   grid-row:1/2;
   grid-column:3/5;
 
@@ -149,7 +147,6 @@ Align-items: start | end | center | stretch;
 
 //=== Editor ===============================//
 #editor-view{
-  background-color:lightseagreen;
   grid-row:2/3;
   grid-column:3/5;
   
@@ -165,7 +162,6 @@ Align-items: start | end | center | stretch;
 
 //=== Footer ===============================//
 #footer-comp{
-  background-color:gold;
   grid-row:3/4;
   grid-column:1/5;
 
