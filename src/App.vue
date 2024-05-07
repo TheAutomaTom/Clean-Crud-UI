@@ -19,10 +19,12 @@
 	}
 
 	const mainGridClass = ref("app-container-toolbox-show");
-
-
+	const toolboxDrawerIsVisible = computed(() => {
+		return mainGridClass.value ==  "app-container-toolbox-show" ? true : false;
+	});
 
 	function handleToolboxToggle(icon: string) {
+		console.log(`toolbox$.IsOpen: ${toolbox$.IsOpen}`);
 		console.log(`Receiving: ${icon}`);
 		app$.UpdateToolbox(icon);
 		if(toolbox$.IsOpen == true ){
@@ -32,11 +34,8 @@
 			console.log("Close Toolbox");
 			mainGridClass.value   = "app-container-toolbox-hide";
 		}
+		console.log(`toolbox$.IsOpen: ${toolbox$.IsOpen}`);
 	}
-
-	const toolboxDrawerIsVisible = computed(() => {
-		return mainGridClass.value ==  "app-container-toolbox-show" ? true : false;
-	});
 
 </script>
 
@@ -80,7 +79,7 @@
 #app-container {
   height: 100%;
   display: grid;
-  grid-template-rows: 2.5em 1fr 2em;
+  grid-template-rows: 2.5em 1fr 1em;
   transition: 150ms;
   transition-timing-function: ease-out;
   overflow: hidden;

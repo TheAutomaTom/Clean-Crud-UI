@@ -15,8 +15,9 @@ $xxl:	1536px;
 $bg-ancillary: #181818;
 $bg-content: #1F1F1F;
 $fg-font-5: #3a3a3a;
-$fg-font-4: #4b4b4b;
-$fg-font-3: #7e7e7e;
+$fg-font-4: #636363;
+$fg-font-3: #bdbbbb;
+$fg-font-1: #f4f4f4;
 $fg-border: #2B2B2B;
 
 
@@ -24,7 +25,7 @@ $fg-border: #2B2B2B;
 [style-theme="dark"] {
   --bg-ancillary: #181818;
   --bg-content: #1F1F1F;
-  --fg-font-5: #f4f4f4;
+  --fg-font-1: #f4f4f4;
   --fg-border: #2B2B2B;
 }
 
@@ -38,7 +39,7 @@ $fg-border: #2B2B2B;
 html {
   @apply h-full;
   background-color: var(--bg-ancillary);
-  color: var(--fg-font-5);
+  color: var(--fg-font-1);
 }
 
 body {
