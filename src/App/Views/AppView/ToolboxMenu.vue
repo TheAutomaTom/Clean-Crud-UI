@@ -1,30 +1,27 @@
 <script setup lang="ts">
-  const emits = defineEmits(["toolbox-toggled"]);
+	import IconButton from "../_Components/IconButton.vue";
+	const emits = defineEmits(["toolbox-toggled"]);
 
-  const handleToolboxToggle = (name: string) =>{
-    console.log(`Emitting ${name}`);
-    emits("toolbox-toggled", name);
-  };
+	const handleToolboxToggle = (icon: string) =>{
+		console.log(`ToolboxMenu Received ${icon}`);
+		console.log(`ToolboxMenu Emitting ${icon}`);
+		console.dir(icon);
+		emits("toolbox-toggled", icon);
+	};
 </script>
 
 <template>  <!---- Template ------------------------------------------------>
 
-<!---- Top-Aligned --------------------------------------------------------->
+  <!---- Top-Aligned --------------------------------------------------------->
   <div id="toolbox-menu-container">
     <div id="toolbox-menu-start">
-      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
-        <g-icon name="account-circle" class="toolbox-menu-item-start"  />
-      </div>
+      <icon-button :icon="'account-circle'" @IconClicked="handleToolboxToggle"></icon-button>
     </div>
 
-<!---- Bottom-Aligned ------------------------------------------------------>
+    <!---- Bottom-Aligned ------------------------------------------------------>
     <div id="toolbox-menu-end">
-      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
-        <g-icon name="account-circle" class="toolbox-menu-item-start" @click="handleToolboxToggle" />
-      </div>
-      <div class="icon-wrapper" @click="handleToolboxToggle('account-circle')">
-        <g-icon name="account-circle" class="toolbox-menu-item-start" @click="handleToolboxToggle" />
-      </div>
+      <icon-button :icon="'account-circle'" @IconClicked="handleToolboxToggle"></icon-button>
+      <icon-button :icon="'account-circle'" @IconClicked="handleToolboxToggle"></icon-button>
     </div>
   </div>
 </template>

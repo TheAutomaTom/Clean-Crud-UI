@@ -19,8 +19,8 @@ module.exports = {
   ],
 
   "ignorePatterns": ["node_modules/**", "**/dist/**"],
-
-  "rules": {
+  
+  "rules": { //====================================================//
 		"@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -49,8 +49,22 @@ module.exports = {
       {
         "avoidEscape": true
       }
-		]
-	}
+		],
+    // https://eslint.vuejs.org/rules/script-indent
+    "vue/script-indent": ["warn", "tab", {
+      "baseIndent": 1,
+      "switchCase": 1,
+      "ignores": []
+    }],
+    "vue/html-indent": ["warn", 2, {
+      "attribute": 1,
+      "baseIndent": 1,
+      "closeBracket": 0,
+      "alignAttributesVertically": true,
+      "ignores": []
+    }]
+  
+	} //============================================================//
 
 
   

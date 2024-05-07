@@ -1,45 +1,45 @@
 
 <script setup lang="ts">
-  import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
-  import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
-  import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
-  import EditorView from "./App/Views/AppView/EditorView.vue";
-  import FooterComp from "./App/Views/AppView/FooterInfo.vue";
-  import { onMounted, onUnmounted, ref } from "vue";
-  import { useAppState } from "./App/State/AppState";
-  import { useToolboxState } from "./App/State/ToolboxState";
-  const app$ = useAppState();
-  const toolbox$ = useToolboxState();
+	import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
+	import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
+	import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
+	import EditorView from "./App/Views/AppView/EditorView.vue";
+	import FooterComp from "./App/Views/AppView/FooterInfo.vue";
+	import { onMounted, onUnmounted, ref } from "vue";
+	import { useAppState } from "./App/State/AppState";
+	import { useToolboxState } from "./App/State/ToolboxState";
+	const app$ = useAppState();
+	const toolbox$ = useToolboxState();
 
-  onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
-  onUnmounted(() => { window.removeEventListener("scroll", handleScroll); });
+	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
+	onUnmounted(() => { window.removeEventListener("scroll", handleScroll); });
 
-  function handleScroll() {
-    app$.IsScrolled = window.scrollY > 0;
-  }
+	function handleScroll() {
+		app$.IsScrolled = window.scrollY > 0;
+	}
 
-  // const toolboxGridColumns = ref("toolbox-grid-columns-per-toolbox-close");
-  const editorGridColumns = ref("editor-grid-columns-per-toolbox-close");
+	const mainGridClass = ref("app-container-toolbox-show");
 
-  function handleToolboxToggle(name: string) {
-    console.log(`Receiving: ${name}`);
-    // app$.UpdateToolbox(name);
-    // if(toolbox$.IsOpen == true ){
-    //   console.log("Open Toolbox");
-    //   // toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-open";
-    //   editorGridColumns.value   = "editor-grid-columns-per-toolbox-open";
-    // } else {
-    //   console.log("Close Toolbox");
-    //   // toolboxGridColumns.value  = "toolbox-grid-columns-per-toolbox-close";
-    //   editorGridColumns.value   = "editor-grid-columns-per-toolbox-close";
-    // }
-  }
+	function handleToolboxToggle(icon: string) {
+		console.log(`Receiving: ${icon}`);
+		app$.UpdateToolbox(icon);
+		if(toolbox$.IsOpen == true ){
+			console.log("Open Toolbox");
+			mainGridClass.value   = "app-container-toolbox-show";
+		} else {
+			console.log("Close Toolbox");
+			mainGridClass.value   = "app-container-toolbox-hide";
+		}
+	}
+  
 
 </script>
 
 <template>
   <div 
     id="app-container" 
+    class="main-grid"
+    :class="mainGridClass"
   > 
   
     <toolbox-menu 
@@ -52,14 +52,12 @@
     
     <workbench-selector 
       id="workbench-selector" 
-      class="bordered" 
-      :class="editorGridColumns"
+      class="bordered"
     ></workbench-selector>
 
     <editor-view 
       id="editor-view" 
-      class="bordered" 
-      :class="editorGridColumns"
+      class="bordered"
     ></editor-view>
 
     <footer-info 
@@ -76,8 +74,19 @@
 #app-container {
   height: 100%;
   display: grid;
-  grid-template-columns: 2.5em 18em 1fr 1em;
   grid-template-rows: 2.5em 1fr 2em;
+  
+  transition: 300ms;
+}
+
+.app-container-toolbox-show{
+  grid-template-columns: 2.5em 18em 1fr 1em;
+  
+}
+
+.app-container-toolbox-hide{
+  grid-template-columns: 2.5em 0em 1fr 1em;
+
 }
 
 //=== Toolbox ==============================//
