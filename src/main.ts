@@ -1,14 +1,23 @@
-import './assets/main.css'
+import "./App/Infra/Styles/index.scss";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./App/Infra/Router/router";
 
-const app = createApp(App)
+const _app = createApp(App);
 
-app.use(createPinia())
-app.use(router)
+_app.use(createPinia());
+_app.use(router);
 
-app.mount('#app')
+// Controls...
+import naiveuiComponents from "./App/Views/_Components/naiveui-components";
+naiveuiComponents.forEach((c) => {
+  _app.use(c.component);
+});
+
+import GIcon from "./App/Views/_Components/GIcon.vue";
+_app.component("g-icon", GIcon);
+
+_app.mount("#app");
