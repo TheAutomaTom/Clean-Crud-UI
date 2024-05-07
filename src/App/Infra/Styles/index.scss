@@ -1,4 +1,4 @@
-
+@use "./reset.scss";
 
 @tailwind base;
 @tailwind components;
@@ -40,9 +40,11 @@ html {
   background-color: var(--bg-ancillary);
   color: var(--fg-font-5);
 }
+
 body {
   @apply h-full;
 }
+
 #app {  
   @apply h-full;
 }

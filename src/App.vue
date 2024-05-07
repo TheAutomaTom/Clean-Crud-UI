@@ -1,6 +1,7 @@
 
 <script setup lang="ts">
   import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
+  import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
   import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
   import EditorView from "./App/Views/AppView/EditorView.vue";
   import FooterComp from "./App/Views/AppView/FooterInfo.vue";
@@ -40,10 +41,31 @@
   <div 
     id="app-container" 
   > 
+  
     <toolbox-menu 
-      id="toolbox-menu"      
       @toolbox-toggled="handleToolboxToggle"
-    ></toolbox-menu>
+    ></toolbox-menu> 
+
+<!-- 
+<div id="toolbox-menu">
+  
+<div id="toolbox-menu-start" 
+  class="bordered">
+  <div class="bordered toolbox-menu-item-start">A1</div>
+  <div class="bordered toolbox-menu-item-start">A2</div>
+  <div class="bordered toolbox-menu-item-start">A3</div>
+  <div class="bordered toolbox-menu-item-start">A4</div>
+  <div class="bordered toolbox-menu-item-start">A5</div>
+  <div class="bordered toolbox-menu-item-start">A6</div>
+  <div class="bordered toolbox-menu-item-start">A7</div>
+</div>
+
+<div id="toolbox-menu-end" 
+  class="bordered">
+  <div class="bordered toolbox-menu-item-end">A8</div>
+  <div class="bordered toolbox-menu-item-end">A9</div>
+</div>
+</div> -->
 
     <toolbox-drawer 
       id="toolbox-drawer"
@@ -98,14 +120,7 @@ Align-items: start | end | center | stretch;
 }
 
 //=== Toolbox ==============================//
-#toolbox-menu{
-  background-color:lightgreen;
-  grid-row:1/3;
-  grid-column:1/2;
-  display: grid;
-  grid-template-rows: 1fr 5em;
-  align-content:start;  
-}
+
 
 #toolbox-drawer{
   background-color:limegreen;

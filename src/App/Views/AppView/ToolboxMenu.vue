@@ -15,7 +15,10 @@
 </script>
 
 <template>  <!---- Template ------------------------------------------------>
-  <!-- <toolbox-selection
+<div id="toolbox-menu-container">
+  <!-- 
+   
+  <toolbox-selection
     @toolbox-toggled="handleToolboxToggle"
     :icon="'account-circle'" 
     :label="'User'"
@@ -40,7 +43,7 @@
   <div @click="handleToolboxToggle" class="bg-green-700 toolbox-menu-item">4</div>
 -->
 
-<div id="toolbox-menu-start" 
+ <div id="toolbox-menu-start" 
   class="bordered">
   <div class="bordered toolbox-menu-item-start">A1</div>
   <div class="bordered toolbox-menu-item-start">A2</div>
@@ -50,10 +53,12 @@
   <div class="bordered toolbox-menu-item-start">A6</div>
   <div class="bordered toolbox-menu-item-start">A7</div>
 </div>
+
 <div id="toolbox-menu-end" 
   class="bordered">
   <div class="bordered toolbox-menu-item-end">A8</div>
   <div class="bordered toolbox-menu-item-end">A9</div>
+</div>
 </div>
 </template>
 
@@ -64,22 +69,32 @@ $fg-font-3: #7e7e7e;
 $fg-font-4: #4b4b4b;
 
 .toolbox-menu-start{
+  justify-items: start;
+}
 
+#toolbox-menu-container{
+  background-color:lightgreen;
+  grid-row:1/3;
+  grid-column:1/2;
+
+  display: grid;
+  grid-template-rows: auto 5em;
 }
 
 .toolbox-menu-item-start{
   height:2.5em;
+}
 
-}
 #toolbox-menu-end{
-  height: 9em;
+  height: 15em;
+  justify-items: end;
+  bottom:0;
 }
+
 .toolbox-menu-item-end{
   height:2.5em;
-  bottom:0;
-
+  justify-items: end;
 }
-
 
 // toolbox-selection {
 //   // @apply w-full;
