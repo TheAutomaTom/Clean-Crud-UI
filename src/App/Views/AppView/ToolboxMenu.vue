@@ -38,11 +38,18 @@
 
     <!---- Bottom-Aligned ------------------------------------------------------>
     <div id="toolbox-menu-end">
-      <icon-button 
-        :config="Account"
-        class="toolbox-menu-icon" 
-        @IconClicked="handleToolboxToggle" 
-      />
+      
+      <n-tooltip placement="right" trigger="hover">
+        <template #trigger>
+          <icon-button 
+            :config="Account"
+            class="toolbox-menu-icon" 
+            @IconClicked="handleToolboxToggle" 
+          />
+        </template>
+        Account
+      </n-tooltip>
+
       <icon-button 
         :config="Settings"
         class="toolbox-menu-icon" 
