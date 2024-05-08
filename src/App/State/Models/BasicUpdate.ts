@@ -1,13 +1,14 @@
-import type { UpdateBy } from "./UpdatedBy";
+import type { UpdateRequester } from "./UpdateRequester";
+import type { UpdateOrigin } from "./UpdatedBy";
 
 export class BasicUpdate{
 
-  updateBy:   UpdateBy;
-  update:     string;
+  origin:    UpdateOrigin;
+  requester: UpdateRequester;
 
-  constructor(updateBy: UpdateBy, update: string) {
-    this.updateBy = updateBy;
-    this.update = update;    
+  constructor(origin: UpdateOrigin, requester: UpdateRequester) {
+    this.origin = origin;
+    this.requester = requester;    
   }
 
 }

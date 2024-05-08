@@ -6,7 +6,7 @@
 	import FooterInfo from "./App/Views/AppView/FooterInfo.vue";
 	import { computed, onMounted, onUnmounted, ref } from "vue";
 	import { useAppState } from "./App/State/AppState";
-	import type { ToolboxMenuItemConfig } from "./App/State/Models/ToolboxMenuItemConfig";
+	import type { ToolboxMenuItemConfig } from "./App/State/ToolboxState/ToolboxMenuItemConfig";
 	const app$ = useAppState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });

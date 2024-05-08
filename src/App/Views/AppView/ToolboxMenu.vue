@@ -1,7 +1,8 @@
 <script setup lang="ts">
-	import { ToolboxMenuItemConfig } from "@/App/State/Models/ToolboxMenuItemConfig";
+	import { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
 	import IconButton from "../_Components/IconButton.vue";
-	import { UpdateBy } from "@/App/State/Models/UpdatedBy";
+	import { UpdateOrigin as UpdateOrigin } from "@/App/State/Models/UpdatedBy";
+	import { UpdateRequester } from "@/App/State/Models/UpdateRequester";
 
 
 	const emits = defineEmits(["toolbox-menu-click"]);
@@ -11,11 +12,11 @@
 	};
 
 	//TODO: Move to config file
-	const Documents = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "DocumentsDrawer", "file-multiple");
-	const Search = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "SearchDrawer", "search");
-	const Account = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "AccountDrawer", "account-circle");
-	const Settings = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "SettingsDrawer", "settings");
-	const Github = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "GithubDrawer", "github-octa-cat");
+	const Documents = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Documents, "file-multiple");
+	const Search = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,    UpdateRequester.Search,    "search");
+	const Account = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,   UpdateRequester.Account,   "account-circle");
+	const Settings = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,  UpdateRequester.Settings,  "settings");
+	const Github = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,    UpdateRequester.Github,    "github-octa-cat");
 	
 </script>
 

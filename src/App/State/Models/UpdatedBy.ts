@@ -1,4 +1,4 @@
-export enum UpdateBy{
+export enum UpdateOrigin{
   ImmaculateConception,
   ToolboxMenuItem
 }
