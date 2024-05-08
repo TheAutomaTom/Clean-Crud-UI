@@ -8,6 +8,11 @@
 	const username = ref("");
 	const passAttempt = ref("");
 
+	const TryLogIn = () =>{
+		console.log(`AccountToolbox.TryLogIn Start: ${username.value}/ ${passAttempt.value}`);
+		account$.TryLogIn(username.value, passAttempt.value);
+	};
+
 </script>
 <template>  <!---- Template ------------------------------------------------>
 
@@ -22,14 +27,13 @@
         <input 
           v-model="username" 
           type="text" 
-          size="tiny" 
           placeholder="User Name" 
           class="mb-4"
         />
 
         <input
+          v-model="passAttempt" 
           type="password"
-          size="tiny" 
           show-password-on="click"
           clearable 
           placeholder="Password"
@@ -37,20 +41,18 @@
           class="mb-4"
           
         />
-        <button 
-          strong 
+        <button  
           class="drawer-button"
+          @click="TryLogIn"
         >
           Log in
         </button>
       
-        <hr/>
       </div>
-      <div id="account-info">
-        
-      </div>
-      
 
+      <div id="account-info">
+        <em>Not currently logged in.</em>
+      </div>
     
     </div>
   </Teleport>
