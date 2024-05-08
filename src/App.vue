@@ -1,13 +1,12 @@
 <script setup lang="ts">
-	import ToolboxMenu from "@/App/Views/AppView/ToolboxMenu.vue";
-	import ToolboxDrawer from "@/App/Views/AppView/ToolboxDrawer.vue";
 	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
-	import WorkbenchSelector from "@/App/Views/AppView/WorkbenchSelector.vue";
 	import EditorView from "@/App/Views/AppView/EditorView.vue";
 	import FooterInfo from "@/App/Views/AppView/FooterInfo.vue";
-	import { computed, onMounted, onUnmounted, ref } from "vue";
-	import { useAppState } from "@/App/State/AppState";
+	import ToolboxMenu from "@/App/Views/AppView/ToolboxMenu.vue";
+	import WorkbenchSelector from "@/App/Views/AppView/WorkbenchSelector.vue";
 	import type { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
+	import { computed, onMounted, onUnmounted } from "vue";
+	import { useAppState } from "@/App/State/AppState";
 	const app$ = useAppState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
@@ -25,43 +24,8 @@
 		app$.UpdateToolbox(update);		
 	}
 
-	const Targets = ["blue", "green"];
-	const Target = ref("blue");
-	const TargetId = computed(():string => {
-		console.log(`#${Target.value}-target`);
-		return `#${Target.value}-target`;
-	});
-
 </script>
-<template>
-  <!-- <div style="margin-bottom:3em; ">
-
-    <div style="margin-bottom:3em;">
-      <label for="targets" >Select Teleport Target:</label>
-      <select v-model="Target"
-              style="width:120px; background-color:black;"
-      >
-        <option
-          v-for="(target, index) in Targets"
-          :value="target"
-          :key="index"
-        >
-          {{ target }}
-        </option>
-      </select>
-      <p>{{ TargetId }}</p>
-    </div>
-    <div id="green-target" style="color:green;border:2px dotted green;margin-bottom:3em;">GREEN</div>
-
-
-    <div id="blue-target" style="color:blue;border:2px dotted blue;margin-bottom:3em;">BLUE</div>
-
-  </div>  
-  <Teleport :to="TargetId">
-    <div>Howdy from a teleported `.vue` file</div>
-  </Teleport> -->
-
- 
+<template> 
   <div 
     id="app-container" 
     class="main-grid"
@@ -70,12 +34,10 @@
 
     <toolbox-menu     
       @toolbox-menu-click="handleToolboxToggle"
-    ></toolbox-menu> 
-
-    <toolbox-drawer 
-      v-show="app$.Toolbox$.IsOpen"
-      id="toolbox-drawer"
-    ></toolbox-drawer>
+    ></toolbox-menu>
+    <div id="toolbox-drawer"
+         v-show="app$.Toolbox$.IsOpen"
+    />
     
     <workbench-selector 
       id="workbench-selector" 
@@ -94,11 +56,8 @@
 
   </div>
 
-
-
-  
-  <account-toolbox></account-toolbox>
-  
+  <!-- Teleport Elements -->
+  <account-toolbox /> 
 
 </template>
 
@@ -121,8 +80,6 @@
 }
 
 //=== Toolbox ==============================//
-
-
 #toolbox-drawer{
   grid-row:1/3;
   grid-column:2/3;
