@@ -16,8 +16,7 @@
 		(e:"icon-clicked", val:ToolboxMenuItemConfig):void
 	}>();
 
-	const handleClick = () => {    
-		console.log(`IconButton Emitting "${props.config?.update}"`);
+	const handleClick = () => {
 		emits("icon-clicked", props.config as ToolboxMenuItemConfig);
 	};
 

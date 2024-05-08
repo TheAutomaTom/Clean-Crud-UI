@@ -7,9 +7,6 @@
 	const emits = defineEmits(["toolbox-menu-click"]);
 
 	const handleToolboxToggle = (update: ToolboxMenuItemConfig) =>{
-		console.log(`ToolboxMenu Received ${ToolboxMenuItemConfig.name}`);
-		console.log(`ToolboxMenu Emitting ${ToolboxMenuItemConfig.name}`);
-		console.dir(ToolboxMenuItemConfig);
 		emits("toolbox-menu-click", update);
 	};
 

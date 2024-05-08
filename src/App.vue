@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 	import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
 	import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
@@ -17,23 +16,12 @@
 		app$.IsScrolled = window.scrollY > 0;
 	}
 
-	const mainGridClass = computed(() => {
+	const mainGridClass = computed(() => {        
 		return app$.Toolbox$.IsOpen ==  true ? "app-container-toolbox-show" : "app-container-toolbox-hide";
-	});
-
-  
+	});  
 
 	function handleToolboxToggle(update: ToolboxMenuItemConfig) {
-		console.log(`App.vue 1| ${app$.Toolbox$.IsOpen}`);
-		
-		console.log(`App Receiving: ${update.update}`);
-
-		app$.UpdateToolbox(update);
-		console.log(`App.vue 2| ${app$.Toolbox$.IsOpen}`);
-		console.log(`App.vue 2| ${mainGridClass.value}`);
-
-
-		
+		app$.UpdateToolbox(update);		
 	}
 
 	// const show = ref(false);
