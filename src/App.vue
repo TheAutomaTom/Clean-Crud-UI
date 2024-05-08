@@ -25,7 +25,8 @@
 	}
 
 </script>
-<template> 
+<template>
+
   <div 
     id="app-container" 
     class="main-grid"
@@ -52,16 +53,19 @@
     <footer-info 
       id="footer-comp" 
       class="bordered"
-    ></footer-info> 
-
+    ></footer-info>   
   </div>
+    
+  
 
   <!-- Teleport Elements -->
   <account-toolbox /> 
-
+  
 </template>
 
 <style lang="scss">
+
+$bg-content: #1F1F1F;
 
 //=== App ==================================//
 #app-container {
@@ -104,6 +108,7 @@
 
 //=== Editor ===============================//
 #editor-view{
+  background-color: $bg-content;
   grid-row:2/3;
   grid-column:3/5;
   
