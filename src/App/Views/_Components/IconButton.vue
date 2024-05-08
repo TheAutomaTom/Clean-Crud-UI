@@ -1,24 +1,24 @@
 <template>  
   <div class="icon-wrapper" @click="handleClick">
     <g-icon 
-      :icon=icon
+      :icon=config?.iconName
     />
   </div>
 </template>
 <script setup lang="ts">
 	import { defineProps} from "vue";	
+	import {ToolboxMenuItemConfig} from "../../State/Models/ToolboxMenuItemConfig";
 	const props = defineProps({
-		icon: { type: String, default: "psychology-question-mark" }    
+		config: ToolboxMenuItemConfig
 	});
 
 	const emits = defineEmits<{
-		(e:"icon-clicked", val:string):void
+		(e:"icon-clicked", val:ToolboxMenuItemConfig):void
 	}>();
 
-	const handleClick = () => {
-    
-		console.log(`IconButton Emitting "${props.icon}"`);
-		emits("icon-clicked", props.icon);
+	const handleClick = () => {    
+		console.log(`IconButton Emitting "${props.config?.update}"`);
+		emits("icon-clicked", props.config as ToolboxMenuItemConfig);
 	};
 
 </script>

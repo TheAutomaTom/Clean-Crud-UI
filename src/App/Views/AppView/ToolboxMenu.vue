@@ -1,13 +1,25 @@
 <script setup lang="ts">
+	import { ToolboxMenuItemConfig } from "@/App/State/Models/ToolboxMenuItemConfig";
 	import IconButton from "../_Components/IconButton.vue";
-	const emits = defineEmits(["toolbox-toggled"]);
+	import { UpdateBy } from "@/App/State/Models/UpdatedBy";
 
-	const handleToolboxToggle = (icon: string) =>{
-		console.log(`ToolboxMenu Received ${icon}`);
-		console.log(`ToolboxMenu Emitting ${icon}`);
-		console.dir(icon);
-		emits("toolbox-toggled", icon);
+
+	const emits = defineEmits(["toolbox-menu-click"]);
+
+	const handleToolboxToggle = (update: ToolboxMenuItemConfig) =>{
+		console.log(`ToolboxMenu Received ${ToolboxMenuItemConfig.name}`);
+		console.log(`ToolboxMenu Emitting ${ToolboxMenuItemConfig.name}`);
+		console.dir(ToolboxMenuItemConfig);
+		emits("toolbox-menu-click", update);
 	};
+
+	//TODO: Move to config file
+	const Documents = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "DocumentsDrawer", "file-multiple");
+	const Search = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "SearchDrawer", "search");
+	const Account = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "AccountDrawer", "account-circle");
+	const Settings = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "SettingsDrawer", "settings");
+	const Github = new ToolboxMenuItemConfig(UpdateBy.ToolboxMenuItem, "GithubDrawer", "github-octa-cat");
+	
 </script>
 
 <template>  <!---- Template ------------------------------------------------>
@@ -16,15 +28,33 @@
 
     <!---- Top-Aligned --------------------------------------------------------->
     <div id="toolbox-menu-start">
-      <icon-button :icon="'file-multiple'" class="toolbox-menu-icon" @IconClicked="handleToolboxToggle" />
-      <icon-button :icon="'search'" class="toolbox-menu-icon" @IconClicked="handleToolboxToggle" />
+      <icon-button 
+        :config="Documents"
+        class="toolbox-menu-icon" 
+        @IconClicked="handleToolboxToggle" />
+      <icon-button
+        :config="Search"
+        class="toolbox-menu-icon" 
+        @IconClicked="handleToolboxToggle" />
     </div>
 
     <!---- Bottom-Aligned ------------------------------------------------------>
     <div id="toolbox-menu-end">
-      <icon-button :icon="'account-circle'" class="toolbox-menu-icon" @IconClicked="handleToolboxToggle" />
-      <icon-button :icon="'settings'" class="toolbox-menu-icon" @IconClicked="handleToolboxToggle" />
-      <icon-button :icon="'github-octa-cat'" class="toolbox-menu-icon" @IconClicked="handleToolboxToggle" />
+      <icon-button 
+        :config="Account"
+        class="toolbox-menu-icon" 
+        @IconClicked="handleToolboxToggle" 
+      />
+      <icon-button 
+        :config="Settings"
+        class="toolbox-menu-icon" 
+        @IconClicked="handleToolboxToggle" 
+      />
+      <icon-button 
+        :config="Github"
+        class="toolbox-menu-icon" 
+        @IconClicked="handleToolboxToggle" 
+      />
     </div>
     
   </div>
