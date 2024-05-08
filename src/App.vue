@@ -1,12 +1,13 @@
 <script setup lang="ts">
-	import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
-	import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
-	import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
-	import EditorView from "./App/Views/AppView/EditorView.vue";
-	import FooterInfo from "./App/Views/AppView/FooterInfo.vue";
+	import ToolboxMenu from "@/App/Views/AppView/ToolboxMenu.vue";
+	import ToolboxDrawer from "@/App/Views/AppView/ToolboxDrawer.vue";
+	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
+	import WorkbenchSelector from "@/App/Views/AppView/WorkbenchSelector.vue";
+	import EditorView from "@/App/Views/AppView/EditorView.vue";
+	import FooterInfo from "@/App/Views/AppView/FooterInfo.vue";
 	import { computed, onMounted, onUnmounted, ref } from "vue";
-	import { useAppState } from "./App/State/AppState";
-	import type { ToolboxMenuItemConfig } from "./App/State/ToolboxState/ToolboxMenuItemConfig";
+	import { useAppState } from "@/App/State/AppState";
+	import type { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
 	const app$ = useAppState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
@@ -24,29 +25,43 @@
 		app$.UpdateToolbox(update);		
 	}
 
-	// const show = ref(false);
-	// const showLogin = () => {
-	// 	show.value = true;
-	// };
-	// const hideLogin = () => {
-	// 	show.value = false;
-	// };
-
+	const Targets = ["blue", "green"];
+	const Target = ref("blue");
+	const TargetId = computed(():string => {
+		console.log(`#${Target.value}-target`);
+		return `#${Target.value}-target`;
+	});
 
 </script>
 <template>
-  <!-- <div class="flex justify-center items-center">
-    <login-modal 
-      v-if="show"
-      @close="hideLogin"
-    />
-    <button
-      @click="showLogin"
-    >
-      Log in
-    </button>
-  </div> -->
-  
+  <!-- <div style="margin-bottom:3em; ">
+
+    <div style="margin-bottom:3em;">
+      <label for="targets" >Select Teleport Target:</label>
+      <select v-model="Target"
+              style="width:120px; background-color:black;"
+      >
+        <option
+          v-for="(target, index) in Targets"
+          :value="target"
+          :key="index"
+        >
+          {{ target }}
+        </option>
+      </select>
+      <p>{{ TargetId }}</p>
+    </div>
+    <div id="green-target" style="color:green;border:2px dotted green;margin-bottom:3em;">GREEN</div>
+
+
+    <div id="blue-target" style="color:blue;border:2px dotted blue;margin-bottom:3em;">BLUE</div>
+
+  </div>  
+  <Teleport :to="TargetId">
+    <div>Howdy from a teleported `.vue` file</div>
+  </Teleport> -->
+
+ 
   <div 
     id="app-container" 
     class="main-grid"
@@ -78,6 +93,12 @@
     ></footer-info> 
 
   </div>
+
+
+
+  
+  <account-toolbox></account-toolbox>
+  
 
 </template>
 
