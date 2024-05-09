@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
-	import EditorView from "@/App/Views/AppView/EditorView.vue";
-	import FooterInfo from "@/App/Views/AppView/FooterInfo.vue";
-	import ToolboxMenu from "@/App/Views/AppView/ToolboxMenu.vue";
-	import WorkbenchSelector from "@/App/Views/AppView/WorkbenchSelector.vue";
+	import AccountToolbox from "@/App/Layouts/ToolboxDrawer/AccountToolbox.vue";
+	import EditorView from "@/App/Layouts/EditorView.vue";
+	import FooterInfo from "@/App/Layouts/FooterInfo.vue";
+	import ToolboxMenu from "@/App/Layouts/ToolboxMenu.vue";
+	import WorkbenchSelector from "@/App/Layouts/WorkbenchSelector.vue";
 	import type { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
 	import { computed, onMounted, onUnmounted } from "vue";
 	import { useAppState } from "@/App/State/AppState";

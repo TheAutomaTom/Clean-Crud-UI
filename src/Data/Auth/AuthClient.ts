@@ -1,4 +1,4 @@
-import { AuthCredentials } from "@/Core/Infra/AuthCredentials";
+import { AuthCredentials } from "@/Core/Infra/Auth/AuthCredentials";
 import type { IAuthClient } from "@/Core/Interfaces/IAuthClient";
 
 export class AuthClient implements IAuthClient{

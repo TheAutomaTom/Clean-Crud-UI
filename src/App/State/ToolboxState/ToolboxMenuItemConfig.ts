@@ -1,6 +1,6 @@
-import { BasicUpdate } from "../Models/BasicUpdate";
-import type { UpdateOrigin } from "../Models/UpdatedBy";
-import type { UpdateRequester } from "../Models/UpdateRequester";
+import { BasicUpdate } from "../../../Core/Infra/Common/Messaging/BasicUpdate";
+import type { UpdateOrigin } from "../../../Core/Infra/Common/Messaging/UpdatedBy";
+import type { UpdateRequester } from "../../../Core/Infra/Common/Messaging/UpdateRequester";
 
 export class ToolboxMenuItemConfig extends BasicUpdate{
   iconName: string;

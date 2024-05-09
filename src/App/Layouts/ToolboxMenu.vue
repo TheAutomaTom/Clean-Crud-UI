@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
-	import IconButton from "../_Components/IconButton.vue";
-	import { UpdateOrigin as UpdateOrigin } from "@/App/State/Models/UpdatedBy";
-	import { UpdateRequester } from "@/App/State/Models/UpdateRequester";
+	import IconButton from "@/App/Layouts/Common/IconButton.vue";
+	import { UpdateOrigin as UpdateOrigin } from "@/Core/Infra/Common/Messaging/UpdatedBy";
+	import { UpdateRequester } from "@/Core/Infra/Common/Messaging/UpdateRequester";
 
 
 	const emits = defineEmits(["toolbox-menu-click"]);

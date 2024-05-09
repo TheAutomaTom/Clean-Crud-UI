@@ -6,7 +6,6 @@
   </div>
 </template>
 <script setup lang="ts">
-	import { defineProps} from "vue";	
 	import {ToolboxMenuItemConfig} from "../../State/ToolboxState/ToolboxMenuItemConfig";
 	const props = defineProps({
 		config: ToolboxMenuItemConfig

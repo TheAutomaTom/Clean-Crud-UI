@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import type { ToolboxMenuItemConfig } from "./ToolboxState/ToolboxMenuItemConfig";
-import { UpdateRequester } from "./Models/UpdateRequester";
+import { UpdateRequester } from "../../Core/Infra/Common/Messaging/UpdateRequester";
 
 export const useToolboxState = defineStore("ToolboxState", () => {
   
