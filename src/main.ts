@@ -11,12 +11,12 @@ import Router from "./App/Config/Router";
 _app.use(Router);
 
 // Controls...
-import naiveuiComponents from "./App/Layouts/Common/naiveui-components";
+import naiveuiComponents from "./App/Views/Common/naiveui-components";
 naiveuiComponents.forEach((c) => {
   _app.use(c.component);
 });
 
-import GIcon from "./App/Layouts/Common/GIcon.vue";
+import GIcon from "./App/Views/Common/GIcon.vue";
 _app.component("g-icon", GIcon);
 
 _app.mount("#app");

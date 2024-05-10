@@ -1,15 +1,13 @@
 <script setup lang="ts">
+	import { useAccountViewModel } from "@/App/ViewModels/Account/AccountViewModel";
 	import { ref } from "vue";
-	import { useAccountState } from "../../State/AccountState";
-	import { darkTheme } from "naive-ui";
-	import { NConfigProvider } from "naive-ui";
   
-	const account$ = useAccountState();
+	const account$ = useAccountViewModel();
 	const username = ref("");
 	const passAttempt = ref("");
 
 	const TryLogIn = () =>{
-		console.log(`AccountToolbox.TryLogIn Start: ${username.value}/ ${passAttempt.value}`);
+		console.log(`AccountToolbox.TryLogIn Start: {${username.value}}, {${passAttempt.value}}.`);
 		account$.TryLogIn(username.value, passAttempt.value);
 	};
 

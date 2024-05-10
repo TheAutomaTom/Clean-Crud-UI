@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import { ToolboxMenuItemConfig } from "@/App/State/ToolboxState/ToolboxMenuItemConfig";
-	import IconButton from "@/App/Layouts/Common/IconButton.vue";
+	import { ToolboxMenuItemConfig } from "@/App/ViewModels/Toolbox/ToolboxMenuItemConfig";
+	import IconButton from "@/App/Views/Common/IconButton.vue";
 	import { UpdateOrigin as UpdateOrigin } from "@/Core/Infra/Common/Messaging/UpdatedBy";
 	import { UpdateRequester } from "@/Core/Infra/Common/Messaging/UpdateRequester";
 

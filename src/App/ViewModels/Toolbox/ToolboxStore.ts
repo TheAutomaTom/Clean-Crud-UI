@@ -1,9 +1,9 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import type { ToolboxMenuItemConfig } from "./ToolboxState/ToolboxMenuItemConfig";
-import { UpdateRequester } from "../../Core/Infra/Common/Messaging/UpdateRequester";
+import type { ToolboxMenuItemConfig } from "./ToolboxMenuItemConfig";
+import { UpdateRequester } from "../../../Core/Infra/Common/Messaging/UpdateRequester";
 
-export const useToolboxState = defineStore("ToolboxState", () => {
+export const useToolboxStore = defineStore("ToolboxStore", () => {
   
   const IsOpen = ref(true);
   const ActiveToolbox = ref(UpdateRequester.Account);

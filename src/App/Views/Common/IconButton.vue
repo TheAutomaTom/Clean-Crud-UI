@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup lang="ts">
-	import {ToolboxMenuItemConfig} from "../../State/ToolboxState/ToolboxMenuItemConfig";
+	import {ToolboxMenuItemConfig} from "../../ViewModels/Toolbox/ToolboxMenuItemConfig";
 	const props = defineProps({
 		config: ToolboxMenuItemConfig
 	});
