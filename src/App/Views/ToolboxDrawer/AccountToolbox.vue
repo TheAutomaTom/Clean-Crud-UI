@@ -2,13 +2,13 @@
 	import { useAccountViewModel } from "@/App/ViewModels/Account/AccountViewModel";
 	import { ref } from "vue";
   
-	const account$ = useAccountViewModel();
-	const username = ref("");
-	const passAttempt = ref("");
+	const accountVM = useAccountViewModel();
+	const username = ref("TheAutomaTom");
+	const passAttempt = ref("Admin123!");
 
 	const TryLogIn = () =>{
 		console.log(`AccountToolbox.TryLogIn Start: {${username.value}}, {${passAttempt.value}}.`);
-		account$.TryLogIn(username.value, passAttempt.value);
+		accountVM.TryLogIn(username.value, passAttempt.value);
 	};
 
 </script>

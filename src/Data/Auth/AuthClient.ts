@@ -16,11 +16,47 @@ export class AuthClient implements IAuthClient{
   async TryGetToken(name: string, pass: string): Promise<AuthCredentials>{
 
     const data = new URLSearchParams();
-    data.append("username", name);
-    data.append("passwords", pass);
     data.append("grant_type", "password");
     data.append("client_id", import.meta.env.VITE_AUTH_CLIENT_NAME);
     data.append("client_secret", import.meta.env.VITE_AUTH_CLIENT_KEY);
+    data.append("username", name);
+    data.append("password", pass);
+    
+    try{  
+      const response = await fetch(this._authUrl, {
+        method: "POST",
+        body: data
+      });
+
+      if(response.ok){
+        const body = await response.json();
+        console.log(body);
+  
+        return new AuthCredentials(body);
+      }
+    } 
+    catch (ex)
+    {
+      console.error(ex);
+    }
+    return new AuthCredentials("");
+  }
+
+  async TryCreateUser(firstName: string, lastName: string, email: string, pass: string): Promise<AuthCredentials>{
+
+    console.log(`TryCreateUser(
+      ${firstName}, 
+      ${lastName}, 
+      ${email}, 
+      ${pass})...
+    `);
+
+    const data = JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      pass
+    });
     
     try{  
       const response = await fetch(this._authUrl, {

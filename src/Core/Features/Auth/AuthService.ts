@@ -1,30 +1,30 @@
-import type AuthState from "./AuthState";
+import type AuthState from "./AuthServiceState";
 import { ServiceBase } from "../Common/ServiceBase";
-import type { GetTokenHandler } from "./GetToken/GetTokenHandler";
-import type { GetTokenRequest } from "./GetToken/GetTokenRequest";
-import { GetTokenResult } from "./GetToken/GetTokenResult";
+import type { GetTokenHandler } from "./TryLogIn/TryLogInHandler";
+import type { TryLogInRequest } from "./TryLogIn/TryLogInRequest";
+import { GetTokenResult } from "./TryLogIn/TryLogInResult";
 
 export class AuthService extends ServiceBase<AuthState>{
   
   getTokenHandler: GetTokenHandler;
 
   constructor({
-    store,
+    authServiceState,
     getTokenHandler
   }:{
-    store: AuthState;
+    authServiceState: AuthState;
     getTokenHandler: GetTokenHandler;
   }){
-    super(store);
+    super(authServiceState);
     this.getTokenHandler = getTokenHandler;
     console.log("AuthService.constructor");
   }
 
-  getToken = async (request: GetTokenRequest): Promise<GetTokenResult> => {
+  tryLogIn = async (request: TryLogInRequest): Promise<GetTokenResult> => {
     console.log("AuthService.getToken");
 
     const creds = await this.getTokenHandler.handle(request);
-    const result = new GetTokenResult(creds);
+    const result = new GetTokenResult(creds.Token);
     return result;
 
   };

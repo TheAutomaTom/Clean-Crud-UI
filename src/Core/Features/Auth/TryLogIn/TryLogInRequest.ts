@@ -1,4 +1,4 @@
-export class GetTokenRequest{
+export class TryLogInRequest{
   UserName: string;
   Password: string;
   
