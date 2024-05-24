@@ -2,13 +2,14 @@
 	import { useAccountViewModel } from "@/App/ViewModels/Account/AccountViewModel";
 	import { ref } from "vue";
   
-	const accountVM = useAccountViewModel();
+	const _accountVM = useAccountViewModel();
+
 	const username = ref("TheAutomaTom");
 	const passAttempt = ref("Admin123!");
 
-	const TryLogIn = () =>{
+	const LogIn = () =>{
 		console.log(`AccountToolbox.TryLogIn Start: {${username.value}}, {${passAttempt.value}}.`);
-		accountVM.TryLogIn(username.value, passAttempt.value);
+		_accountVM.LogIn(username.value, passAttempt.value);
 	};
 
 </script>
@@ -41,7 +42,7 @@
         />
         <button  
           class="drawer-button"
-          @click="TryLogIn"
+          @click="LogIn()"
         >
           Log in
         </button>

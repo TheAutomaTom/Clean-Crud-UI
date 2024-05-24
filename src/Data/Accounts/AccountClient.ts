@@ -1,19 +1,31 @@
-import { AuthCredentials } from "@/Core/Infra/Auth/AuthCredentials";
-import type { IAuthClient } from "@/Core/Interfaces/IAuthClient";
+import type { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo";
+import type { IAccountsClient as IAccountClient } from "@/Core/Interfaces/IAccountClient";
 
-export class AuthClient implements IAuthClient{
+
+export class AccountClient implements IAccountClient{
+  
   _authUrl: string;
   _apiUrl  = import.meta.env.VITE_API_URL;
+
   constructor() {
     this._authUrl = import.meta.env.VITE_API_URL;
     this._authUrl.replace(/^{ENV}/, import.meta.env.VITE_AUTH_ENV);
     this._authUrl.replace(/^{PORT}/, import.meta.env.VITE_AUTH_URL_PORT);
     this._authUrl.replace(/^{REALM}/, import.meta.env.VITE_AUTH_URL_REALM);
 
-    console.log(`Auth Url: ${this._authUrl}`);    
+    console.log(`Accounts Url: ${this._authUrl}`); 
   }
 
-  async TryGetToken(name: string, pass: string): Promise<AuthCredentials>{
+  LogIn(name: string, pass: string): Promise<AuthenticationInfo> {
+    throw new Error("Method not implemented.");
+  }
+
+  Register(username: string, firstName: string, lastName: string, email: string, password: string): Promise<AuthenticationInfo> {
+    throw new Error("Method not implemented.");
+  }
+
+  /*
+  async TryGetToken(name: string, pass: string): Promise<AuthenticationInfo>{
 
     const data = new URLSearchParams();
     data.append("grant_type", "password");
@@ -32,19 +44,30 @@ export class AuthClient implements IAuthClient{
         const body = await response.json();
         console.log(body);
   
-        return new AuthCredentials(body);
+        return new AuthenticationInfo(body);
       }
     } 
     catch (ex)
     {
       console.error(ex);
     }
-    return new AuthCredentials("");
+    return new AuthenticationInfo("");
   }
+  */
 
-  async TryCreateUser(firstName: string, lastName: string, email: string, pass: string): Promise<AuthCredentials>{
 
-    console.log(`TryCreateUser(
+
+  /*
+  async RegisterAndLogIn(
+    Username : string,
+    FirstName : string,
+    LastName : string,
+    Email : string,
+    Password : string,
+    Role : string // TODO: Use enum
+  ): Promise<AuthCredentials>{
+
+    console.log(`RegisterAccount(
       ${firstName}, 
       ${lastName}, 
       ${email}, 
@@ -68,14 +91,15 @@ export class AuthClient implements IAuthClient{
         const body = await response.json();
         console.log(body);
   
-        return new AuthCredentials(body);
+        return new TokenInfo(body);
       }
     } 
     catch (ex)
     {
       console.error(ex);
     }
-    return new AuthCredentials("");
+    return new TokenInfo("");
   }
+  */
   
 }

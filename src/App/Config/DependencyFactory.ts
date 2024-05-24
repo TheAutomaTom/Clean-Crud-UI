@@ -1,24 +1,24 @@
-import { AuthClient } from "@/Data/Auth/AuthClient";
-import { GetTokenHandler } from "@/Core/Features/Auth/TryLogIn/GetCredentialsHandler";
-import { AuthService } from "@/Core/Features/Auth/AuthService";
-import useAuthServiceState from "@/Core/Features/Auth/AuthServiceState";
+import { AccountService } from "@/Core/Features/Accounts/AccountService";
+import { LogInHandler } from "@/Core/Features/Accounts/LogIn/LogInHandler";
+import { AccountClient } from "@/Data/Accounts/AccountClient";
 
-const ProvideAuthService =()=> {
+const ProvideAccountService =()=> {
+  console.log("DependencyFactory.ProvideAccountService()");
   
   // Data dependencies
-  const authClient = new AuthClient();
+  console.log("DependencyFactory.ProvideAccountService(): new AccountClient()");
+  const accountClient = new AccountClient();
 
   // Core dependencies
-  const authServiceState = useAuthServiceState();
-  const getTokenHandler = new GetTokenHandler(authClient);
+  console.log("DependencyFactory.ProvideAccountService(): new LogInHandler(accountClient)");
+  const logInHandler = new LogInHandler(accountClient);
   
-  return new AuthService({
-    authServiceState,
-    getTokenHandler
+  return new AccountService({
+    logInHandler: logInHandler
   });
 
 };
 
-export const DependencyInjector = {
-  ProvideAuthService
+export const DependencyFactory = {
+  ProvideAccountService
 };
