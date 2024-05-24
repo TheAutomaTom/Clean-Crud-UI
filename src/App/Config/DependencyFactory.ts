@@ -1,5 +1,6 @@
 import { AccountService } from "@/Core/Features/Accounts/AccountService";
 import { LogInHandler } from "@/Core/Features/Accounts/LogIn/LogInHandler";
+import { RegistrationHandler } from "@/Core/Features/Accounts/Register/RegistrationHandler";
 import { AccountClient } from "@/Data/Accounts/AccountClient";
 
 const ProvideAccountService =()=> {
@@ -12,9 +13,11 @@ const ProvideAccountService =()=> {
   // Core dependencies
   console.log("DependencyFactory.ProvideAccountService(): new LogInHandler(accountClient)");
   const logInHandler = new LogInHandler(accountClient);
+  const registrationHandler = new RegistrationHandler(accountClient);
   
   return new AccountService({
-    logInHandler: logInHandler
+    logInHandler,
+    registrationHandler
   });
 
 };
