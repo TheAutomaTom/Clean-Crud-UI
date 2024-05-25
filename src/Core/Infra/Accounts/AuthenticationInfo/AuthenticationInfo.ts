@@ -1,5 +1,5 @@
 // import type { User } from "./AuthenticationInfo/User";
-import type { TokenInfo } from "./AuthenticationInfo/TokenInfo";
+import type { TokenInfo } from "./TokenInfo";
 
 export class AuthenticationInfo {
   // User: User;

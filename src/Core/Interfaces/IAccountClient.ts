@@ -1,8 +1,9 @@
-import type { AuthenticationInfo } from "../Infra/Accounts/AuthenticationInfo";
+import type { LogInResponse } from "../Infra/Accounts/LogInResponse";
+import type { RegistrationResponse } from "../Infra/Accounts/RegistrationResponse";
 
 export interface IAccountsClient{
 
-  LogIn(name: string, pass: string): Promise<AuthenticationInfo>;
+  LogIn(name: string, pass: string): Promise<LogInResponse>;
   
   Register(
     username : string,
@@ -10,6 +11,6 @@ export interface IAccountsClient{
     lastName : string,
     email : string,
     password : string
-  ): Promise<AuthenticationInfo>;
+  ): Promise<RegistrationResponse>;
 
 }

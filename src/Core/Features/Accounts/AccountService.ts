@@ -1,9 +1,9 @@
 import type { LogInHandler } from "./LogIn/LogInHandler";
 import type { LogInRequest } from "./LogIn/LogInRequest";
 import type { LogInResult } from "./LogIn/LogInResult";
-import { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo";
 import { TokenInfo } from "@/Core/Infra/Accounts/AuthenticationInfo/TokenInfo";
 import type { RegistrationHandler } from "./Register/RegistrationHandler";
+import { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo/AuthenticationInfo";
 
 export class AccountService {
   
