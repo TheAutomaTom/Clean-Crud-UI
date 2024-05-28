@@ -1,6 +1,20 @@
-export class TokenInfo{    
+export class AccessToken{    
   // TODO: Move to env/ app settings
   private readonly tokenTimeToLive = 1; // minute(s)
+  
+  private accessToken: string = "";
+  private expiry: Date;
+
+  // TODO: Handle refreshExpiry
+  // private refreshExpiry: Date;
+  
+  constructor( accessToken: string ) {
+    this.accessToken = accessToken;
+    this.expiry = this.updateTokenExpiration();
+
+    // TODO: Handle refreshExpiry
+    // this.refreshExpiry = this.updateTokenExpiration();
+  }
 
   TryGetValidToken =(): string => {
     if(this.expiry > new Date()){
@@ -10,20 +24,6 @@ export class TokenInfo{
       return "";
     }
   };
-  
-  private accessToken: string = "";
-  private expiry: Date;
-  private refreshExpiry: Date;
-  
-  constructor(
-    accessToken: string
-  ) {
-    this.accessToken = accessToken;
-    this.expiry = this.updateTokenExpiration();
-
-    // TODO: Handle refreshExpiry
-    this.refreshExpiry = this.updateTokenExpiration();
-  }
 
   private updateTokenExpiration =():Date=> {
     

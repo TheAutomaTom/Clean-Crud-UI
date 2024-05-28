@@ -1,5 +1,4 @@
-import type { LogInResult } from "@/Core/Features/Accounts/LogIn/LogInResult";
-import type { RegistrationResponse } from "@/Core/Infra/Accounts/RegistrationResponse";
+import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 import type { IAccountsClient as IAccountClient } from "@/Core/Interfaces/IAccountClient";
 
 export class AccountClient implements IAccountClient{
@@ -14,7 +13,7 @@ export class AccountClient implements IAccountClient{
                         .replace("{VERSION}", import.meta.env.VITE_API_VERSION);
   }
 
-  async LogIn(username: string, password: string): Promise<LogInResult> {
+  async LogIn(username: string, password: string): Promise<AuthenticatedAccount> {
     console.log(`AccountClient.LogIn: username: ${username}, password: ${password}.`);
     
     const res = await fetch(`${this.apiUrl}/accounts/log-in`, {
@@ -33,8 +32,9 @@ export class AccountClient implements IAccountClient{
 
     console.log(`AccountClient.LogIn: Response.ok? ${res.ok}.`); 
     if (res.ok) {
-
-      return (await res.json()) as LogInResult;
+      
+      const asPascalCase = convertToPascalObjectKey(await res.json());
+      return (asPascalCase) as AuthenticatedAccount;
 
     } else {
       throw Error(res.statusText);
@@ -43,7 +43,7 @@ export class AccountClient implements IAccountClient{
 
   }
 
-  async RegisterNewAccount(username: string, firstName: string, lastName: string, email: string, password: string): Promise<RegistrationResponse> {
+  async RegisterNewAccount(username: string, firstName: string, lastName: string, email: string, password: string): Promise<AuthenticatedAccount> {
 
     const res = await fetch(`${this.apiUrl}/accounts/register`, {
       method: "POST",
@@ -67,12 +67,16 @@ export class AccountClient implements IAccountClient{
       console.log(`AccountClient.Register: ${res}`);
       console.dir(res);
 
-      return (await res.json()) as RegistrationResponse;
+      const asPascalCase = convertToPascalObjectKey(await res.json());
+      return (asPascalCase) as AuthenticatedAccount;
+      
     } else {
       throw Error(res.statusText);
     }
     
   }
+
+
 
   /*
   async TryGetToken(name: string, pass: string): Promise<AuthenticationInfo>{
@@ -153,3 +157,12 @@ export class AccountClient implements IAccountClient{
   */
   
 }
+
+
+  
+const convertToPascalObjectKey = (obj: object) => {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    const pascalCaseKey = key.charAt(0).toUpperCase() + key.slice(1);
+    return { ...acc, [pascalCaseKey]: value };
+  }, {});
+};

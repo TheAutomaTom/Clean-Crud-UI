@@ -1,7 +1,6 @@
 import type { LogInRequest } from "@/Core/Features/Accounts/LogIn/LogInRequest";
-import type { LogInResult } from "@/Core/Features/Accounts/LogIn/LogInResult";
 import type { RegistrationRequest } from "@/Core/Features/Accounts/Register/RegistrationRequest";
-import type { RegistrationResult } from "@/Core/Features/Accounts/Register/RegistrationResult";
+import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 
 export interface IAccountService{
 
@@ -9,8 +8,8 @@ export interface IAccountService{
   
   SaveToken(token: string):void;
 
-  LogIn(logInRequest: LogInRequest): Promise<LogInResult>;
+  LogIn(logInRequest: LogInRequest): Promise<AuthenticatedAccount>;
   
-  Register(registerRequest: RegistrationRequest): Promise<RegistrationResult>;
+  Register(registerRequest: RegistrationRequest): Promise<AuthenticatedAccount>;
 
 }

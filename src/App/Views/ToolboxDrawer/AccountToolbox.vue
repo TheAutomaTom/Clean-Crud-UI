@@ -4,7 +4,7 @@
   
 	const _accountVM = useAccountViewModel();
 
-	const username = ref(_accountVM.User.Username);
+	const username = ref(_accountVM.User.username);
 	const passAttempt = ref("Admin123!");  
 
 	const LogIn = () =>{
@@ -22,7 +22,10 @@
         Account
       </div>
 
-      <div id="account-credentials-form">
+      <div 
+        v-if="_accountVM.IsLoggedIn == false"
+        id="account-credentials-form"
+      >
         <input 
           v-model="username" 
           type="text" 
@@ -47,15 +50,37 @@
           Log in
         </button>
       
-      </div>
-
-      <div id="account-info">
         <div id="account-info-empty">
           <p>Not currently logged in.</p>
         </div>
-        <div id="account-info-user-data">
-          <p>User: {{_accountVM.User.Username}}</p>
-          <p>Token: {{_accountVM.Token}}</p>
+
+      </div>
+
+      <div id="account-info">
+
+        <div
+          v-if="_accountVM.IsLoggedIn == true"  
+          id="account-info-user-data"
+        >
+          <table>
+            <tr>
+              <td class="pr-2">Username:</td>
+              <td>{{ _accountVM.User.username }}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{ _accountVM.User.email }}</td>
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>{{ _accountVM.User.firstName }} {{ _accountVM.User.lastName }}</td>
+            </tr>
+            <tr>
+              <td>Role:</td>
+              <td>{{ _accountVM.User.userRole }}</td>
+            </tr>
+          </table>
+
         </div>
       </div>
     

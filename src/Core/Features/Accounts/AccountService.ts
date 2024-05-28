@@ -1,15 +1,13 @@
+import type { AuthenticatedAccount } from "./../../Infra/AuthenticatedAccount/AuthenticatedAccount";
 import type { LogInHandler } from "./LogIn/LogInHandler";
 import type { LogInRequest } from "./LogIn/LogInRequest";
-import type { LogInResult } from "./LogIn/LogInResult";
 import type { RegistrationHandler } from "./Register/RegistrationHandler";
-import { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo/AuthenticationInfo";
-import type { RegistrationResult } from "./Register/RegistrationResult";
-import { TokenInfo } from "@/Core/Infra/Accounts/AuthenticationInfo/TokenInfo";
 import type { RegistrationRequest } from "./Register/RegistrationRequest";
+import { AccessToken } from "./../../Infra/AuthenticatedAccount/AccessToken";
 
 export class AccountService {
   
-  authInfo: AuthenticationInfo;
+  authenticatedAccount: AuthenticatedAccount;
   logInHandler: LogInHandler;
   registrationHandler: RegistrationHandler;
 
@@ -21,28 +19,21 @@ export class AccountService {
     registrationHandler: RegistrationHandler;
   }){    
     console.log("AccountService.constructor");
-    this.authInfo = {} as AuthenticationInfo;
+    this.authenticatedAccount = {} as AuthenticatedAccount;
     this.logInHandler = logInHandler;
     this.registrationHandler = registrationHandler;
   }
 
   // State ======================================================//
-  GetSavedToken =()=> this.authInfo.TokenInfo.TryGetValidToken();
+  GetSavedToken =()=> this.authenticatedAccount.Credential.accessToken.TryGetValidToken();
 
   SaveToken =(token: string)=> {    
-    console.log("AccountService.SaveToken");
-    if(this.authInfo == null){
-      this.authInfo = new AuthenticationInfo(
-        // new User(), 
-        new TokenInfo(token)
-      );
-      return;
-    }
-    this.authInfo.TokenInfo = new TokenInfo(token);
+    console.log("AccountService.SaveToken");    
+    this.authenticatedAccount.Credential.accessToken = new AccessToken(token);
   };
 
   // Features ===================================================//
-  LogIn = async (request: LogInRequest): Promise<LogInResult> => {
+  LogIn = async (request: LogInRequest): Promise<AuthenticatedAccount> => {
     console.log("AccountService.LogIn");
 
     const result = await this.logInHandler.handle(request);    
@@ -50,7 +41,7 @@ export class AccountService {
 
   };
  
-  Register = async ( request: RegistrationRequest): Promise<RegistrationResult> => {
+  Register = async ( request: RegistrationRequest): Promise<AuthenticatedAccount> => {
     console.log("AccountService.Register");
     const result = await this.registrationHandler.handle(request);  
     // // ...

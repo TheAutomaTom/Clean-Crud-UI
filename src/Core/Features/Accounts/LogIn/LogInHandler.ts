@@ -1,6 +1,6 @@
 import type { LogInRequest } from "./LogInRequest";
-import { LogInResult } from "./LogInResult";
 import type { IAccountsClient } from "../../../Interfaces/IAccountClient";
+import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 
 export class LogInHandler{
   _client: IAccountsClient;
@@ -10,7 +10,7 @@ export class LogInHandler{
     this._client = client;    
   }
 
-  async handle(request: LogInRequest): Promise<LogInResult>{
+  async handle(request: LogInRequest): Promise<AuthenticatedAccount>{
     console.log("LogInHandler.handle start...");
 
     const response = await this._client.LogIn(request.UserName, request.Password);
@@ -18,10 +18,6 @@ export class LogInHandler{
     console.log(`LogInHandler.handle: ${response}`);
     console.dir(response);
 
-    return new LogInResult( 
-      response.AuthenticationInfo,
-      response.AccountInfo
-    );
-
+    return response;
   }
 }

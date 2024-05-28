@@ -13,14 +13,14 @@ export class RegistrationHandler{
   async handle(request: RegistrationRequest): Promise<RegistrationResult>{
     console.log("RegisterHandler.handle");
 
-    const result = this._client.RegisterNewAccount(
-      request.Username,
-      request.FirstName,
-      request.LastName,
-      request.Email,
-      request.Password
+    const result = await this._client.RegisterNewAccount(
+                                        request.Username,
+                                        request.FirstName,
+                                        request.LastName,
+                                        request.Email,
+                                        request.Password
 
-    );
+                                      );
     
     return result; 
 
