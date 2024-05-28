@@ -1,4 +1,4 @@
-import type { LogInResponse } from "@/Core/Infra/Accounts/LogInResponse";
+import type { LogInResult } from "@/Core/Features/Accounts/LogIn/LogInResult";
 import type { RegistrationResponse } from "@/Core/Infra/Accounts/RegistrationResponse";
 import type { IAccountsClient as IAccountClient } from "@/Core/Interfaces/IAccountClient";
 
@@ -7,14 +7,15 @@ export class AccountClient implements IAccountClient{
   apiUrl: string;
   apiKey  = import.meta.env.VITE_API_KEY;
   
-  constructor() {        
+  constructor() {
         this.apiUrl = import.meta.env.VITE_API_URL
                         .replace("{ADDRESS}", import.meta.env.VITE_API_ADDRESS)
                         .replace("{PORT}", import.meta.env.VITE_API_PORT)
-                        .replace("{VERSION}", import.meta.env.VITE_API_VERSION);  
+                        .replace("{VERSION}", import.meta.env.VITE_API_VERSION);
   }
 
-  async LogIn(username: string, password: string): Promise<LogInResponse> {
+  async LogIn(username: string, password: string): Promise<LogInResult> {
+    console.log(`AccountClient.LogIn: username: ${username}, password: ${password}.`);
     
     const res = await fetch(`${this.apiUrl}/accounts/log-in`, {
       method: "POST",
@@ -30,8 +31,11 @@ export class AccountClient implements IAccountClient{
       })
     });
 
+    console.log(`AccountClient.LogIn: Response.ok? ${res.ok}.`); 
     if (res.ok) {
-      return (await res.json()) as LogInResponse;
+
+      return (await res.json()) as LogInResult;
+
     } else {
       throw Error(res.statusText);
     }
@@ -39,7 +43,7 @@ export class AccountClient implements IAccountClient{
 
   }
 
-  async Register(username: string, firstName: string, lastName: string, email: string, password: string): Promise<RegistrationResponse> {
+  async RegisterNewAccount(username: string, firstName: string, lastName: string, email: string, password: string): Promise<RegistrationResponse> {
 
     const res = await fetch(`${this.apiUrl}/accounts/register`, {
       method: "POST",
@@ -60,6 +64,9 @@ export class AccountClient implements IAccountClient{
     });
 
     if (res.ok) {
+      console.log(`AccountClient.Register: ${res}`);
+      console.dir(res);
+
       return (await res.json()) as RegistrationResponse;
     } else {
       throw Error(res.statusText);

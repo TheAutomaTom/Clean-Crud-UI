@@ -4,11 +4,11 @@
   
 	const _accountVM = useAccountViewModel();
 
-	const username = ref("TheAutomaTom");
-	const passAttempt = ref("Admin123!");
+	const username = ref(_accountVM.User.Username);
+	const passAttempt = ref("Admin123!");  
 
 	const LogIn = () =>{
-		console.log(`AccountToolbox.TryLogIn Start: {${username.value}}, {${passAttempt.value}}.`);
+		console.log(`AccountToolbox.LogIn Start: {${username.value}}, {${passAttempt.value}}.`);
 		_accountVM.LogIn(username.value, passAttempt.value);
 	};
 
@@ -50,7 +50,13 @@
       </div>
 
       <div id="account-info">
-        <em>Not currently logged in.</em>
+        <div id="account-info-empty">
+          <p>Not currently logged in.</p>
+        </div>
+        <div id="account-info-user-data">
+          <p>User: {{_accountVM.User.Username}}</p>
+          <p>Token: {{_accountVM.Token}}</p>
+        </div>
       </div>
     
     </div>

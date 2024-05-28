@@ -1,11 +1,11 @@
-import type { LogInResponse } from "../Infra/Accounts/LogInResponse";
+import type { LogInResult } from "../Features/Accounts/LogIn/LogInResult";
 import type { RegistrationResponse } from "../Infra/Accounts/RegistrationResponse";
 
 export interface IAccountsClient{
 
-  LogIn(name: string, pass: string): Promise<LogInResponse>;
+  LogIn(name: string, pass: string): Promise<LogInResult>;
   
-  Register(
+  RegisterNewAccount(
     username : string,
     firstName : string,
     lastName : string,

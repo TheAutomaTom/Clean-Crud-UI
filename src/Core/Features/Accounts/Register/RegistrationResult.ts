@@ -1,6 +1,6 @@
-import type { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo";
-
 /// This class can be used to create AuthCredentials and an AccountDetail
+import type { AuthenticationInfo } from "@/Core/Infra/Accounts/AuthenticationInfo/AuthenticationInfo";
+
 export class RegistrationResult{
   AuthenticationInfo: AuthenticationInfo;
   // AccountInfo: AccountInfo;

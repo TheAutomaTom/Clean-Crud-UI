@@ -2,12 +2,12 @@ export class TokenInfo{
   // TODO: Move to env/ app settings
   private readonly tokenTimeToLive = 1; // minute(s)
 
-  TryGetValidToken =():string|null=> {
+  TryGetValidToken =(): string => {
     if(this.expiry > new Date()){
       return this.accessToken;
     } else{
       // TODO: Handle refreshExpiry
-      return null;
+      return "";
     }
   };
   
