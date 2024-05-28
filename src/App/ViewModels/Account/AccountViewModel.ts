@@ -29,7 +29,7 @@ export const useAccountViewModel = defineStore("AccountViewModel", () => {
     }
   };
 
-  const Register = async (    
+  const Register = async (
     username: string,
     email: string,
     password: string,
@@ -46,8 +46,12 @@ export const useAccountViewModel = defineStore("AccountViewModel", () => {
     const attempt = await _accountService.Register(registrationRequest);
 
     if(attempt != null){
+      console.log("AccountViewModel.Register: attempt...");
+      console.dir(attempt);
       User.value = attempt.User;
       Token.value = attempt.Credential.accessToken;
+      IsLoggedIn.value = true;
+      console.log(`AccountViewModel.IsLoggedIn: ${IsLoggedIn.value}...`);
     }
   };
 
