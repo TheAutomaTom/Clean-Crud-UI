@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import DocumentsToolbox from "@/App/Views/ToolboxDrawer/DocumentsToolbox.vue";
+	import DocumentSelectorToolbox from "@/App/Views/ToolboxDrawer/DocumentSelectorToolbox.vue";
 	import SearchToolbox from "@/App/Views/ToolboxDrawer/SearchToolbox.vue";
 	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
 	import SettingsToolbox from "@/App/Views/ToolboxDrawer/SettingsToolbox.vue";
@@ -64,7 +64,7 @@
   
 
   <!-- Teleport Elements -->
-  <documents-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Documents"/> 
+  <document-selector-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Documents"/> 
   <search-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Search"/> 
   <account-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Account"/> 
   <settings-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Settings"/> 

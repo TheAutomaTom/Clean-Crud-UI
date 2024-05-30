@@ -1,8 +1,8 @@
 <script setup lang="ts">
-	// import { useDocumentsViewModel } from "@/App/ViewModels/Documents/DocumentsViewModel";
+	import { useDocumentsViewModel } from "@/App/ViewModels/Toolbox/DocumentSelector/DocumentSelectorViewModel";
 	import { ref } from "vue";
   
-	// const _VM = useDocumentsViewModel();
+	const _VM = useDocumentsViewModel();
 </script>
 <template>  <!---- Template ------------------------------------------------>
 
