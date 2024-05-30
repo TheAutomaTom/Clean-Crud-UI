@@ -3,20 +3,23 @@
 	import IconButton from "@/App/Views/Common/IconButton.vue";
 	import { UpdateOrigin as UpdateOrigin } from "@/Core/Infra/Common/Messaging/UpdatedBy";
 	import { UpdateRequester } from "@/Core/Infra/Common/Messaging/UpdateRequester";
+	import { ref } from "vue";
 
 
 	const emits = defineEmits(["toolbox-menu-click"]);
+	const isActiveIcon = ref(UpdateRequester.Documents);
 
 	const handleToolboxToggle = (update: ToolboxMenuItemConfig) =>{
+		isActiveIcon.value = update.requester;
 		emits("toolbox-menu-click", update);
 	};
 
 	//TODO: Move to config file
 	const Documents = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Documents, "file-multiple");
-	const Search = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,    UpdateRequester.Search,    "search");
-	const Account = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,   UpdateRequester.Account,   "account-circle");
-	const Settings = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,  UpdateRequester.Settings,  "settings");
-	const Github = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem,    UpdateRequester.Github,    "github-octa-cat");
+	const Search    = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Search,    "search");
+	const Account   = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Account,   "account-circle");
+	const Settings  = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Settings,  "settings");
+	const Github    = new ToolboxMenuItemConfig(UpdateOrigin.ToolboxMenuItem, UpdateRequester.Github,    "github-octa-cat");
 	
 </script>
 
@@ -26,12 +29,16 @@
 
     <!---- Top-Aligned --------------------------------------------------------->
     <div id="toolbox-menu-start">
+      
       <icon-button 
         :config="Documents"
-        class="toolbox-menu-icon" 
+        :isActive="isActiveIcon == UpdateRequester.Documents"
+        class="toolbox-menu-icon"
         @IconClicked="handleToolboxToggle" />
+
       <icon-button
         :config="Search"
+        :isActive="isActiveIcon == UpdateRequester.Search"
         class="toolbox-menu-icon" 
         @IconClicked="handleToolboxToggle" />
     </div>
@@ -43,6 +50,7 @@
         <template #trigger>
           <icon-button 
             :config="Account"
+            :isActive="isActiveIcon == UpdateRequester.Account"
             class="toolbox-menu-icon" 
             @IconClicked="handleToolboxToggle" 
           />
@@ -52,11 +60,13 @@
 
       <icon-button 
         :config="Settings"
+        :isActive="isActiveIcon == UpdateRequester.Settings"
         class="toolbox-menu-icon" 
         @IconClicked="handleToolboxToggle" 
       />
       <icon-button 
         :config="Github"
+        :isActive="isActiveIcon == UpdateRequester.Github"
         class="toolbox-menu-icon" 
         @IconClicked="handleToolboxToggle" 
       />

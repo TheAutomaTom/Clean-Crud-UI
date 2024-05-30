@@ -4,6 +4,7 @@ import type { UpdateRequester } from "../../../Core/Infra/Common/Messaging/Updat
 
 export class ToolboxMenuItemConfig extends BasicUpdate{
   iconName: string;
+  isSelected: boolean = false;
 
   constructor(updateBy: UpdateOrigin, requester: UpdateRequester, iconName: string) {
     super(updateBy, requester);

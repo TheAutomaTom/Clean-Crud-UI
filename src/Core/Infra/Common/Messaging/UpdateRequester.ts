@@ -1,7 +1,7 @@
 export enum UpdateRequester{
-  Documents,
-  Search,
-  Account,
-  Settings,
-  Github
+  Documents = "Documents",
+  Search    = "Search",
+  Account   = "Account",
+  Settings  = "Settings",
+  Github    = "Github"
 }

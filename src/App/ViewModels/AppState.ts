@@ -1,4 +1,4 @@
-import { useToolboxStore } from "./Toolbox/ToolboxStore";
+import { useToolboxViewModel } from "./Toolbox/ToolboxViewModel";
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import type { ToolboxMenuItemConfig } from "./Toolbox/ToolboxMenuItemConfig";
@@ -10,7 +10,7 @@ export const useAppState = defineStore("AppState", () => {
   const IsScrolled = ref(false);
 
   //=== Toolbox ==========================================//
-  const Toolbox$ = useToolboxStore();
+  const Toolbox$ = useToolboxViewModel();
   const UpdateToolbox = (update: ToolboxMenuItemConfig) => Toolbox$.Update(update);
   
   return {

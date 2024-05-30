@@ -1,5 +1,8 @@
 <template>  
-  <div class="icon-wrapper" @click="handleClick">
+  <div 
+    :class="isActive? 'icon-wrapper-active' : 'icon-wrapper'" 
+    @click="handleClick"
+  >
     <g-icon 
       :icon=config?.iconName
     />
@@ -8,7 +11,8 @@
 <script setup lang="ts">
 	import {ToolboxMenuItemConfig} from "../../ViewModels/Toolbox/ToolboxMenuItemConfig";
 	const props = defineProps({
-		config: ToolboxMenuItemConfig
+		config: ToolboxMenuItemConfig,
+		isActive: Boolean
 	});
 
 	const emits = defineEmits<{
@@ -32,9 +36,10 @@ $fg-font-4: #636363;
   :hover{
     fill: $fg-font-3;
   }
-  :active{
-    fill: $fg-font-1;
-  }
+  
+}
+.icon-wrapper-active{
+  fill: $fg-font-1;
 }
 
 </style>

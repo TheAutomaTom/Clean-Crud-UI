@@ -3,10 +3,10 @@ import { defineStore } from "pinia";
 import type { ToolboxMenuItemConfig } from "./ToolboxMenuItemConfig";
 import { UpdateRequester } from "../../../Core/Infra/Common/Messaging/UpdateRequester";
 
-export const useToolboxStore = defineStore("ToolboxStore", () => {
+export const useToolboxViewModel = defineStore("ToolboxViewModel", () => {
   
   const IsOpen = ref(true);
-  const ActiveToolbox = ref(UpdateRequester.Account);
+  const ActiveToolbox = ref(UpdateRequester.Account); 
 
   const Update = (update: ToolboxMenuItemConfig) =>{
     if (ActiveToolbox.value == update.requester){
