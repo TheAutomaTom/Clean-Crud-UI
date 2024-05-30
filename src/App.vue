@@ -1,15 +1,13 @@
-
 <script setup lang="ts">
-	import ToolboxMenu from "./App/Views/AppView/ToolboxMenu.vue";
-	import ToolboxDrawer from "./App/Views/AppView/ToolboxDrawer.vue";
-	import WorkbenchSelector from "./App/Views/AppView/WorkbenchSelector.vue";
-	import EditorView from "./App/Views/AppView/EditorView.vue";
-	import FooterComp from "./App/Views/AppView/FooterInfo.vue";
-	import { computed, onMounted, onUnmounted, ref } from "vue";
-	import { useAppState } from "./App/State/AppState";
-	import { useToolboxState } from "./App/State/ToolboxState";
+	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
+	import EditorView from "@/App/Views/EditorView.vue";
+	import FooterInfo from "@/App/Views/FooterInfo.vue";
+	import ToolboxMenu from "@/App/Views/ToolboxMenu.vue";
+	import WorkbenchSelector from "@/App/Views/WorkbenchSelector.vue";
+	import type { ToolboxMenuItemConfig } from "@/App/ViewModels/Toolbox/ToolboxMenuItemConfig";
+	import { computed, onMounted, onUnmounted } from "vue";
+	import { useAppState } from "@/App/ViewModels/AppState";
 	const app$ = useAppState();
-	const toolbox$ = useToolboxState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
 	onUnmounted(() => { window.removeEventListener("scroll", handleScroll); });
@@ -18,42 +16,29 @@
 		app$.IsScrolled = window.scrollY > 0;
 	}
 
-	const mainGridClass = ref("app-container-toolbox-show");
-	const toolboxDrawerIsVisible = computed(() => {
-		return mainGridClass.value ==  "app-container-toolbox-show" ? true : false;
-	});
+	const mainGridClass = computed(() => {        
+		return app$.Toolbox$.IsOpen ==  true ? "app-container-toolbox-show" : "app-container-toolbox-hide";
+	});  
 
-	function handleToolboxToggle(icon: string) {
-		console.log(`toolbox$.IsOpen: ${toolbox$.IsOpen}`);
-		console.log(`Receiving: ${icon}`);
-		app$.UpdateToolbox(icon);
-		if(toolbox$.IsOpen == true ){
-			console.log("Open Toolbox");
-			mainGridClass.value   = "app-container-toolbox-show";
-		} else {
-			console.log("Close Toolbox");
-			mainGridClass.value   = "app-container-toolbox-hide";
-		}
-		console.log(`toolbox$.IsOpen: ${toolbox$.IsOpen}`);
+	function handleToolboxToggle(update: ToolboxMenuItemConfig) {
+		app$.UpdateToolbox(update);		
 	}
 
 </script>
-
 <template>
+
   <div 
     id="app-container" 
     class="main-grid"
     :class="mainGridClass"
   > 
-  
-    <toolbox-menu 
-      @toolbox-toggled="handleToolboxToggle"
-    ></toolbox-menu> 
 
-    <toolbox-drawer 
-      v-show="toolboxDrawerIsVisible"
-      id="toolbox-drawer"      
-    ></toolbox-drawer>
+    <toolbox-menu     
+      @toolbox-menu-click="handleToolboxToggle"
+    ></toolbox-menu>
+    <div id="toolbox-drawer"
+         v-show="app$.Toolbox$.IsOpen"
+    />
     
     <workbench-selector 
       id="workbench-selector" 
@@ -68,12 +53,19 @@
     <footer-info 
       id="footer-comp" 
       class="bordered"
-    ></footer-info> 
-
+    ></footer-info>   
   </div>
+    
+  
+
+  <!-- Teleport Elements -->
+  <account-toolbox /> 
+  
 </template>
 
 <style lang="scss">
+
+$bg-content: #1F1F1F;
 
 //=== App ==================================//
 #app-container {
@@ -92,8 +84,6 @@
 }
 
 //=== Toolbox ==============================//
-
-
 #toolbox-drawer{
   grid-row:1/3;
   grid-column:2/3;
@@ -118,6 +108,7 @@
 
 //=== Editor ===============================//
 #editor-view{
+  background-color: $bg-content;
   grid-row:2/3;
   grid-column:3/5;
   

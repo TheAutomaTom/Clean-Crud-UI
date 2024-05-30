@@ -1,6 +1,7 @@
-import { useToolboxState } from "./ToolboxState";
+import { useToolboxStore } from "./Toolbox/ToolboxStore";
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import type { ToolboxMenuItemConfig } from "./Toolbox/ToolboxMenuItemConfig";
 
 export const useAppState = defineStore("AppState", () => {
   
@@ -9,13 +10,11 @@ export const useAppState = defineStore("AppState", () => {
   const IsScrolled = ref(false);
 
   //=== Toolbox ==========================================//
-  const toolbox$ = useToolboxState();
-  const UpdateToolbox = (name: string) => {
-    toolbox$.SelectedView = name;
-    toolbox$.IsOpen = !toolbox$.IsOpen;
-  };
+  const Toolbox$ = useToolboxStore();
+  const UpdateToolbox = (update: ToolboxMenuItemConfig) => Toolbox$.Update(update);
   
   return {
+    Toolbox$,
     UpdateToolbox,
     IsLoading,
     IsScrolled

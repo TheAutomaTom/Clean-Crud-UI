@@ -12,7 +12,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@App": fileURLToPath(new URL("./src/App", import.meta.url)),
+      "@Layout": fileURLToPath(new URL("./src/App/Layouts", import.meta.url)),
+      "@ViewModels": fileURLToPath(new URL("./src/App/ViewModels", import.meta.url)),
+      "@Views": fileURLToPath(new URL("./src/App/Views", import.meta.url)),
+      "@Data": fileURLToPath(new URL("./src/Data", import.meta.url))
     }
   }
 });
