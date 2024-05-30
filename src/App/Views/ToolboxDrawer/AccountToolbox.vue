@@ -173,47 +173,5 @@ $bg-accent-neutral: #0078D4;
 $bg-accent-hover: #0f65a7;
 $bg-accent-active: #1c91eb;
 
-.drawer-title{
-  @apply mb-2;
-  font-variant: small-caps;
-}
-.toolbox-drawer-wrapper{
-  @apply p-3 text-xs;  
-  height: 100%;
-  width: 100%;  
-}
-
-input{
-  padding:2px;
-  width: 100%;  
-  background-color: $bg-content;
-}
-
-.drawer-button{
-  @apply mb-4;
-  height: 1.765em;
-  width: 100%;  
-  background-color: $bg-accent-neutral;
-  
-}
-.drawer-button:hover {
-    background-color: $bg-accent-hover;
-  }  
-.drawer-button:active {
-    background-color: $bg-accent-active;
-  }  
-
-.drawer-button-alt{
-  @apply mb-4;
-  height: 1.765em;
-  width: 100%;  
-  color: $bg-accent-active;
-  background-color: $bg-ancillary;
-  
-}
-.drawer-button-alt:hover {
-  color: $bg-accent-hover;
-  background-color: $bg-ancillary;
-}
 
 </style>

@@ -1,5 +1,9 @@
 <script setup lang="ts">
+	import DocumentsToolbox from "@/App/Views/ToolboxDrawer/DocumentsToolbox.vue";
+	import SearchToolbox from "@/App/Views/ToolboxDrawer/SearchToolbox.vue";
 	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
+	import SettingsToolbox from "@/App/Views/ToolboxDrawer/SettingsToolbox.vue";
+	import WebLinksToolbox from "@/App/Views/ToolboxDrawer/WebLinksToolbox.vue";
 	import EditorView from "@/App/Views/EditorView.vue";
 	import FooterInfo from "@/App/Views/FooterInfo.vue";
 	import ToolboxMenu from "@/App/Views/ToolboxMenu.vue";
@@ -7,6 +11,7 @@
 	import type { ToolboxMenuItemConfig } from "@/App/ViewModels/Toolbox/ToolboxMenuItemConfig";
 	import { computed, onMounted, onUnmounted } from "vue";
 	import { useAppState } from "@/App/ViewModels/AppState";
+	import { ToolboxType } from "./Core/Infra/Common/Messaging/ToolboxType";
 	const app$ = useAppState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });
@@ -17,7 +22,7 @@
 	}
 
 	const mainGridClass = computed(() => {        
-		return app$.Toolbox$.IsOpen ==  true ? "app-container-toolbox-show" : "app-container-toolbox-hide";
+		return app$.ToolboxVM.IsOpen ==  true ? "app-container-toolbox-show" : "app-container-toolbox-hide";
 	});  
 
 	function handleToolboxToggle(update: ToolboxMenuItemConfig) {
@@ -37,7 +42,7 @@
       @toolbox-menu-click="handleToolboxToggle"
     ></toolbox-menu>
     <div id="toolbox-drawer"
-         v-show="app$.Toolbox$.IsOpen"
+         v-show="app$.ToolboxVM.IsOpen"
     />
     
     <workbench-selector 
@@ -59,7 +64,11 @@
   
 
   <!-- Teleport Elements -->
-  <account-toolbox /> 
+  <documents-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Documents"/> 
+  <search-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Search"/> 
+  <account-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Account"/> 
+  <settings-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Settings"/> 
+  <web-links-toolbox v-if="app$.ToolboxVM.ActiveToolbox == ToolboxType.Github"/> 
   
 </template>
 

@@ -10,11 +10,11 @@ export const useAppState = defineStore("AppState", () => {
   const IsScrolled = ref(false);
 
   //=== Toolbox ==========================================//
-  const Toolbox$ = useToolboxViewModel();
-  const UpdateToolbox = (update: ToolboxMenuItemConfig) => Toolbox$.Update(update);
+  const ToolboxVM = useToolboxViewModel();
+  const UpdateToolbox = (update: ToolboxMenuItemConfig) => ToolboxVM.Update(update);
   
   return {
-    Toolbox$,
+    ToolboxVM,
     UpdateToolbox,
     IsLoading,
     IsScrolled

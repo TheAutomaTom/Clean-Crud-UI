@@ -1,4 +1,4 @@
-export enum UpdateRequester{
+export enum ToolboxType{
   Documents = "Documents",
   Search    = "Search",
   Account   = "Account",
