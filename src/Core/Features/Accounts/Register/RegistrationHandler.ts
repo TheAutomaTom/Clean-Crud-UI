@@ -1,6 +1,6 @@
 import type { RegistrationRequest } from "./RegistrationRequest";
-import type { RegistrationResult } from "./RegistrationResult";
 import type { IAccountsClient } from "../../../Interfaces/IAccountClient";
+import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 
 export class RegistrationHandler{
   _client: IAccountsClient;
@@ -10,7 +10,7 @@ export class RegistrationHandler{
     this._client = client;    
   }
 
-  async handle(request: RegistrationRequest): Promise<RegistrationResult>{
+  async handle(request: RegistrationRequest): Promise<AuthenticatedAccount>{
     console.log("RegisterHandler.handle");
 
     const result = await this._client.RegisterNewAccount(

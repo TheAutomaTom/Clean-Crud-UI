@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-	import { useWebLinksViewModel } from "@/App/ViewModels/Toolbox/WebLinks/WebLinksViewModel";
+	import { useWebLinksViewModel } from "@/App/ViewModels/Toolbox/WebLinksViewModel";
 	import { ref } from "vue";
   
   

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { useAccountViewModel } from "@/App/ViewModels/Toolbox/Account/AccountViewModel";
+	import { useAccountViewModel } from "@/App/ViewModels/Toolbox/AccountViewModel";
 	import { ref } from "vue";
   
 	const _accountVM = useAccountViewModel();
