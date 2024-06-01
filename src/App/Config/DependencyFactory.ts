@@ -1,6 +1,6 @@
 import { RefreshTokenHandler } from "./../../Core/Features/Auth/Tokens/Refresh/RefreshTokenHandler";
 import { GetNewTokenHandler } from "./../../Core/Features/Auth/Tokens/GetNew/GetNewTokenHandler";
-import { GetNamesHandler } from "@/Core/Features/Cruds/GetNames/GetNamesHandler";
+import { GetDocumentNamesHandler } from "@/Core/Features/Cruds/GetDocumentNames/GetDocumentNamesHandler";
 import { CrudClient } from "@/Data/InternalApis/CrudClient";
 
 import { AuthService } from "@/Core/Features/Auth/AuthService";
@@ -41,11 +41,11 @@ const ProvideCrudService =()=> {
   const crudClient = new CrudClient();
 
   // Core dependencies
-  console.log("DependencyFactory.ProvideCrudService(): new GetNamesHandler(crudClient)");
-  const getNamesHandler = new GetNamesHandler(crudClient);
+  console.log("DependencyFactory.ProvideCrudService(): new GetDocumentNamesHandler(crudClient)");
+  const getDocumentNamesHandler = new GetDocumentNamesHandler(crudClient);
   
   return new CrudService({
-    getNamesHandler
+    getDocumentNamesHandler: getDocumentNamesHandler
   });
 
 };

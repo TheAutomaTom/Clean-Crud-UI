@@ -1,24 +1,24 @@
-import type { GetNamesHandler } from "./GetNames/GetNamesHandler";
-import type { GetNamesRequest } from "./GetNames/GetNamesRequest";
+import type { GetDocumentNamesHandler } from "./GetDocumentNames/GetDocumentNamesHandler";
+import type { GetDocumentNamesRequest } from "./GetDocumentNames/GetDocumentNamesRequest";
 
 export class CrudService {
   
-  getNamesHandler: GetNamesHandler;  
+  getDocumentNamesHandler: GetDocumentNamesHandler;  
 
   constructor({
-    getNamesHandler
+    getDocumentNamesHandler
   }:{
-    getNamesHandler: GetNamesHandler;
+    getDocumentNamesHandler: GetDocumentNamesHandler;
   }){    
     console.log("CrudService.constructor");
-    this.getNamesHandler = getNamesHandler;
+    this.getDocumentNamesHandler = getDocumentNamesHandler;
   }
 
   // Features ===================================================//
-  GetNames = async (request: GetNamesRequest): Promise<string[]> => {
-    console.log("CrudService.GetNames");
+  GetDocumentNames = async (request: GetDocumentNamesRequest): Promise<string[]> => {
+    console.log("CrudService.GetDocumentNames");
 
-    const result = await this.getNamesHandler.handle(request);    
+    const result = await this.getDocumentNamesHandler.handle(request);    
     return result;
 
   };
