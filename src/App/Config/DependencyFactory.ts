@@ -1,27 +1,34 @@
+import { RefreshTokenHandler } from "./../../Core/Features/Auth/Tokens/Refresh/RefreshTokenHandler";
+import { GetNewTokenHandler } from "./../../Core/Features/Auth/Tokens/GetNew/GetNewTokenHandler";
 import { GetNamesHandler } from "@/Core/Features/Cruds/GetNames/GetNamesHandler";
 import { CrudClient } from "@/Data/InternalApis/CrudClient";
 
-import { AccountService } from "@/Core/Features/Accounts/AccountService";
-import { LogInHandler } from "@/Core/Features/Accounts/LogIn/LogInHandler";
-import { RegistrationHandler } from "@/Core/Features/Accounts/Register/RegistrationHandler";
-import { AccountClient } from "@/Data/InternalApis/AccountClient";
+import { AuthService } from "@/Core/Features/Auth/AuthService";
+import { LogInHandler } from "@/Core/Features/Auth/LogIn/LogInHandler";
+import { RegistrationHandler } from "@/Core/Features/Auth/Register/RegistrationHandler";
+import { AuthClient } from "@/Data/InternalApis/AuthClient";
 import { CrudService } from "@/Core/Features/Cruds/CrudService";
 
-const ProvideAccountService =()=> {
-  console.log("DependencyFactory.ProvideAccountService()");
+
+const ProvideAuthService =()=> {
+  console.log("DependencyFactory.ProvideAuthService()");
   
   // Data dependencies
-  console.log("DependencyFactory.ProvideAccountService(): new AccountClient()");
-  const accountClient = new AccountClient();
+  console.log("DependencyFactory.ProvideAuthService(): new AuthClient()");
+  const authClient = new AuthClient();
 
   // Core dependencies
-  console.log("DependencyFactory.ProvideAccountService(): new LogInHandler(accountClient)");
-  const logInHandler = new LogInHandler(accountClient);
-  const registrationHandler = new RegistrationHandler(accountClient);
+  console.log("DependencyFactory.ProvideAuthService(): new LogInHandler(authClient)");
+  const logInHandler = new LogInHandler(authClient);
+  const registrationHandler = new RegistrationHandler(authClient);
+  const getNewTokenHandler  = new GetNewTokenHandler(authClient);
+  const refreshTokenHandler = new RefreshTokenHandler(authClient);
   
-  return new AccountService({
+  return new AuthService({
     logInHandler,
-    registrationHandler
+    registrationHandler,
+    getNewTokenHandler,
+    refreshTokenHandler
   });
 
 };
@@ -44,6 +51,6 @@ const ProvideCrudService =()=> {
 };
 
 export const DependencyFactory = {
-  ProvideAccountService,
+  ProvideAuthService,
   ProvideCrudService
 };

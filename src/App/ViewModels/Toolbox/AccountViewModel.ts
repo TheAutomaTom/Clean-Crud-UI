@@ -1,29 +1,31 @@
-import type { AccessToken } from "@/Core/Infra/AuthenticatedAccount/AccessToken";
-import type { IAccountService } from "@/App/Interfaces/IAccountService";
 import type { User } from "@/Core/Infra/AuthenticatedAccount/User";
 import { DependencyFactory } from "@/App/Config/DependencyFactory";
-import { LogInRequest } from "@/Core/Features/Accounts/LogIn/LogInRequest";
-import { RegistrationRequest } from "@/Core/Features/Accounts/Register/RegistrationRequest";
+import { LogInRequest } from "@/Core/Features/Auth/LogIn/LogInRequest";
+import { RegistrationRequest } from "@/Core/Features/Auth/Register/RegistrationRequest";
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useAuthState } from "@/App/State/AuthState";
+import type { IAuthService } from "@/App/Interfaces/IAuthService";
 
-const _accountService: IAccountService = DependencyFactory.ProvideAccountService();
+
+const _service: IAuthService = DependencyFactory.ProvideAuthService();
 
 export const useAccountViewModel = defineStore("AccountViewModel", () => {
 
+  const AuthState = useAuthState();
+
   const IsLoggedIn = ref(false);
   const User = ref({} as User);
-  const Token = ref({} as AccessToken);
   
   const LogIn = async (username: string, passAttempt: string) => {
     const logInRequest = new LogInRequest(username, passAttempt);
-    const attempt = await _accountService.LogIn(logInRequest);
+    const attempt = await _service.LogIn(logInRequest);
 
     if(attempt != null){
       console.log("AccountViewModel.LogIn: attempt...");
       console.dir(attempt);
       User.value = attempt.User;
-      Token.value = attempt.Credential.accessToken;
+      // AuthState.  xxxxxxxxxxxxxxxxxxxxx= attempt.Credential.accessTokens;
       IsLoggedIn.value = true;
       console.log(`AccountViewModel.IsLoggedIn: ${IsLoggedIn.value}...`);
     }
@@ -43,13 +45,13 @@ export const useAccountViewModel = defineStore("AccountViewModel", () => {
       firstName, 
       lastName 
     );
-    const attempt = await _accountService.Register(registrationRequest);
+    const attempt = await _service.Register(registrationRequest);
 
     if(attempt != null){
       console.log("AccountViewModel.Register: attempt...");
       console.dir(attempt);
       User.value = attempt.User;
-      Token.value = attempt.Credential.accessToken;
+      // AuthState.Token = attempt.Credential.accessTokens;
       IsLoggedIn.value = true;
       console.log(`AccountViewModel.IsLoggedIn: ${IsLoggedIn.value}...`);
     }
@@ -59,8 +61,7 @@ export const useAccountViewModel = defineStore("AccountViewModel", () => {
     IsLoggedIn,
     LogIn,
     Register,
-    User,
-    Token
+    User
   };
 
 });

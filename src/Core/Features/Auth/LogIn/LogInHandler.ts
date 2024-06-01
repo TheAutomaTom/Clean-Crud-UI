@@ -1,11 +1,11 @@
 import type { LogInRequest } from "./LogInRequest";
-import type { IAccountsClient } from "../../../Interfaces/IAccountClient";
+import type { IAuthClient } from "../../../Interfaces/IAuthClient";
 import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 
 export class LogInHandler{
-  _client: IAccountsClient;
+  _client: IAuthClient;
 
-  constructor(client: IAccountsClient) {    
+  constructor(client: IAuthClient) {    
     console.log("LogInHandler.constructor()");
     this._client = client;    
   }

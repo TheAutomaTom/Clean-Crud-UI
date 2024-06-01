@@ -1,7 +1,7 @@
-import type { AccessToken } from "./AccessToken";
+import type { Token } from "./AccessTokens";
 
 export type AuthCredential = {
-  accessToken: AccessToken;
+  accessTokens: Token;
   authUserId: string;
   roles: string[];
 }

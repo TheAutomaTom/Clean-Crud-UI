@@ -1,17 +1,17 @@
 <script setup lang="ts">
-	import DocumentSelectorToolbox from "@/App/Views/ToolboxDrawer/DocumentSelectorToolbox.vue";
-	import SearchToolbox from "@/App/Views/ToolboxDrawer/SearchToolbox.vue";
 	import AccountToolbox from "@/App/Views/ToolboxDrawer/AccountToolbox.vue";
-	import SettingsToolbox from "@/App/Views/ToolboxDrawer/SettingsToolbox.vue";
-	import WebLinksToolbox from "@/App/Views/ToolboxDrawer/WebLinksToolbox.vue";
+	import DocumentSelectorToolbox from "@/App/Views/ToolboxDrawer/DocumentSelectorToolbox.vue";
 	import EditorView from "@/App/Views/EditorView.vue";
 	import FooterInfo from "@/App/Views/FooterInfo.vue";
+	import SearchToolbox from "@/App/Views/ToolboxDrawer/SearchToolbox.vue";
+	import SettingsToolbox from "@/App/Views/ToolboxDrawer/SettingsToolbox.vue";
 	import ToolboxMenu from "@/App/Views/ToolboxMenu.vue";
+	import WebLinksToolbox from "@/App/Views/ToolboxDrawer/WebLinksToolbox.vue";
 	import WorkbenchSelector from "@/App/Views/WorkbenchSelector.vue";
 	import type { ToolboxMenuItemConfig } from "@/App/ViewModels/Toolbox/ToolboxMenuItemConfig";
+	import { ToolboxType } from "./Core/Infra/Common/Messaging/ToolboxType";
 	import { computed, onMounted, onUnmounted } from "vue";
 	import { useAppState } from "@/App/ViewModels/AppState";
-	import { ToolboxType } from "./Core/Infra/Common/Messaging/ToolboxType";
 	const app$ = useAppState();
 
 	onMounted(() =>   { window.addEventListener(   "scroll", handleScroll); });

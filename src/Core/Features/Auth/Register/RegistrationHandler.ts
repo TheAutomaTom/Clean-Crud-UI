@@ -1,11 +1,11 @@
 import type { RegistrationRequest } from "./RegistrationRequest";
-import type { IAccountsClient } from "../../../Interfaces/IAccountClient";
+import type { IAuthClient } from "../../../Interfaces/IAuthClient";
 import type { AuthenticatedAccount } from "@/Core/Infra/AuthenticatedAccount/AuthenticatedAccount";
 
 export class RegistrationHandler{
-  _client: IAccountsClient;
+  _client: IAuthClient;
 
-  constructor(client: IAccountsClient) {    
+  constructor(client: IAuthClient) {    
     console.log("RegisterHandler.constructor()");
     this._client = client;    
   }
